@@ -2,6 +2,7 @@ public class Espaco {
     // atributos
     private int posicao;
     private String nome;
+    private Espaco tipo;
     private double preco;
     private double precoCasa;
     private double aluguel;
