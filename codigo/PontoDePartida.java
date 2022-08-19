@@ -3,8 +3,10 @@ public class PontoDePartida extends Espaco {
     private double taxa;
 
     // construtor(es)
-    public PontoDePartida() {
+    public PontoDePartida(int posicao) {
         this.taxa = 1500;
+
+        inicializaEspaco(posicao);
     }
 
     // getters e setters
@@ -17,6 +19,15 @@ public class PontoDePartida extends Espaco {
     }
 
     //metodos
+    private void inicializaEspaco(int posicao) {
+        switch(posicao) {
+            case 1:
+                setNome(NomeDoEspaco.PONTO_PARTIDA.toString());
+                setPosicao(posicao);
+                break;
+        }
+    }
+
     public void deuAVolta() {
         // atualiza o valor da taxa que o jogador recebera
         

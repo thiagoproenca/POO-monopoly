@@ -1,34 +1,27 @@
 public class Espaco {
     // atributos
-    private int posicao;
-    private String nome;
-    private Espaco tipo;
-    private double preco;
-    private double precoCasa;
-    private double aluguel;
-    private double aluguelCasa;
+    protected int posicao;
+    protected String nome;
 
-    // construtor(es)
-    public Espaco() {
-        this.posicao = 0;
-        this.nome = "";
-        this.preco = 0;
-        this.precoCasa = 0;
-        this.aluguel = 0;
-        this.aluguelCasa = 0;
-    }
-
-    public Espaco(int posicao, String nome, double preco, double precoCasa, double aluguel, double aluguelCasa) {
-        this.posicao = posicao;
-        this.nome = nome;
-        this.preco = preco;
-        this.precoCasa = precoCasa;
-        this.aluguel = aluguel;
-        this.aluguelCasa = aluguelCasa;
-    }
+    // construtor
 
     // getters e setters
+    protected int getPosicao() {
+        return(this.posicao);
+    }
 
+    protected void setPosicao(int posicao) {
+        this.posicao = posicao;
+    }
+
+    protected String getNome() {
+        return(this.nome);
+    }
+
+    protected void setNome(String nome) {
+        this.nome = nome;
+    }
 
     //metodos
+    
 }

@@ -2,9 +2,11 @@ public class ImpostoDeRenda extends Espaco {
     // atributos
     private double imposto;
 
-    // construtor(es)
-    public ImpostoDeRenda() {
+    // construtor
+    public ImpostoDeRenda(int posicao) {
         this.imposto = 200;
+        
+        inicializaEspaco(posicao);
     }
 
     // getters e setters
@@ -12,24 +14,19 @@ public class ImpostoDeRenda extends Espaco {
         return(this.imposto);
     }
 
-    private void setImposto(double imposto) {
-        this.imposto = imposto;
-    }
-
     //metodos
-    public double pagarTaxaFixo(double valor) {
-        // o jogador pagara $200,00
-        if(getImposto() != 200) {
-            setImposto(200);
+    private void inicializaEspaco(int posicao) {
+        switch(posicao) {
+            case 5:
+                setNome(NomeDoEspaco.IMPOSTO.toString());
+                setPosicao(posicao);
+                break;
         }
-
-        return(valor - getImposto());
     }
 
-    public double pagarTaxaPorcento(double fortuna) {
-        // o jogador pagara 10% da fortuna total
-        setImposto(fortuna/10);
-        
-        return(fortuna - getImposto());
+    public double pagarTaxaFixo() {
+        // o jogador pagara $200,00
+
+        return(getImposto());
     }
 }

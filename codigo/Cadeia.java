@@ -1,40 +1,30 @@
 public class Cadeia extends Espaco {
     // atributos
-    private static double valorFianca = 50;
-    private int rodadasPreso;
-    private boolean visitando;
+    private static int valorFianca = 50;
 
-    // construtor(es)
-    public Cadeia(boolean visitando){
-        this.visitando = visitando;
-
-        if(!visitando){
-            this.rodadasPreso = 3;
-        }
-        
-        else {
-            this.rodadasPreso = 0;
-        }
+    // construtor
+    public Cadeia(int posicao) {
+        inicializaEspaco(posicao);
     }
+    
     // getters e setters
-    private int getRodadasPreso() {
-        return(this.rodadasPreso);
-    }
-
-    private void setRodadasPreso(int rodadasPreso) {
-        this.rodadasPreso = rodadasPreso;
+    private static int getValorFianca() {
+        return(valorFianca);
     }
 
     //metodos
-    public void sairCadeia() {
-        // se alguma condicao que libera da cadeia for cumprida, saira da cadeia
-        if(getRodadasPreso() > 0) {
-            // podera sair se pagar
-            // podera sair se uma dupla de dados
+    private void inicializaEspaco(int posicao) {
+        switch(posicao) {
+            case 11:
+                setNome(NomeDoEspaco.CADEIA.toString());
+                setPosicao(posicao);
+                break;
         }
+    }
+
+    public int pagarFianca() {
+        // o jogador paga a fianca
         
-        else if(getRodadasPreso() == 0 && !visitando) {
-            // o jogador estado devendo pro banco; o jogador perdeu o jogo
-        }
+        return(getValorFianca());
     }
 }
