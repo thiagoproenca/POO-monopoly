@@ -1,29 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package gerenciador_monopoly;
-
-/**
- *
- * @author mauri
- */
 public class Utilidade extends Propriedade{
 
-    private double preçoDeAluguel;
+    //Atributos
+    private Dado dados;
 
+    //Construtor
+    public Utilidade(String nome, Dado dados)
+    {
+        super(nome, 150, 0);
+        this.dados = dados;
+    }
+    //Metodos
+    //Sobrecarga do método calcular aluguel para Utilidade
     @Override
-    public void calcularAluguel() {
+    public int calcularAluguel(int valor) {
+        int precoDeAluguel;
 
-        preçoDeAluguel = preçoDeAluguel * 4;
-    }
+        valor = dados.getResultado();
 
-    public double getPreçoDeAluguel() {
-        return preçoDeAluguel;
-    }
+        switch(jogador.Num_Utilidades())
+        {
+            case 1:
+                precoDeAluguel = valor * 4;
+                break;
+            case 2:
+                precoDeAluguel = valor * 10;
+                break;
+            default:
+                precoDeAluguel = -1;//Definir e tratar essa excessão
+                break;
 
-    public void setPreçoDeAluguel(double preçoDeAluguel) {
-        this.preçoDeAluguel = preçoDeAluguel;
+        }
+        return precoDeAluguel;
+
     }
 
 }
