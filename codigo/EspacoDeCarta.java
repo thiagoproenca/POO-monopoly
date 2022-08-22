@@ -25,4 +25,13 @@ public class EspacoDeCarta extends Espaco {
                 break;
         }
     }
+
+    public Boolean cofreSorte(){
+        //Caso a carta for do tipo COFRE, retorna TRUE
+        //Caso a carta for do tipo SORTE, retorna FALSE
+        if(getNome() == NomeDoEspaco.COFRE.toString())
+            return true;
+        else 
+            return false;
+    }
 }
