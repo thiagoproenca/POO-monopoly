@@ -72,7 +72,8 @@ public class Lote extends Propriedade{
         this.precoDeAluguelHotel = precoDeAluguelHotel;
     }
 
-    public int getNumCasas() {
+    public int getNumCasas() 
+    {
         return numCasas;
     }
 
@@ -90,7 +91,7 @@ public class Lote extends Propriedade{
     }
 
     @Override
-    public int calcularAluguel() //Questionar se faz sentido ter o numero de casas como parametro
+    public int calcularAluguel()
     {
         int precoDeAluguel = 0;
         switch(numCasas)

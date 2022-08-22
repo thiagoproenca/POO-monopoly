@@ -1,20 +1,24 @@
-//import java.lang.Override;
+/*
+ *Autor: Maurício Kessongo
+
+ */
 
 public class Estacao_de_Metro extends Propriedade
 {
 
     //Construtor
-    public Estacao_de_Metro(String nome)
+    public Estacao_de_Metro(String nome, int precoDeCompra, int precoDeAluguel)
     {
-        super(nome, 200, 0);
+        super(nome, precoDeCompra, precoDeAluguel);
     }
     //Métodos
-    //Sobrecarga do método calcularaluguel para uma estação de metrô(oVERLOAD)
-    
+    //Sobrecarga do método calcularaluguel para uma estação de metrô
+    @Override
     public int calcularAluguel() 
-    {
-       int precoDeAluguel;
-       switch(jogador.Num_Estacoes__de_Metro())
+    { 
+        int Num_Estacoes__de_Metro = jogador.Num_Estacoes__de_Metro();
+        int precoDeAluguel;
+       switch(Num_Estacoes__de_Metro)
        {
             case 1:
                 precoDeAluguel = 25;
@@ -33,10 +37,4 @@ public class Estacao_de_Metro extends Propriedade
        }
        return precoDeAluguel;
     }
-
-
-    
-   
-
-
 }

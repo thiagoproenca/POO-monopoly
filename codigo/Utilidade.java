@@ -1,23 +1,21 @@
 public class Utilidade extends Propriedade{
 
-    //Atributos
-    private Dado dados;
-
     //Construtor
-    public Utilidade(String nome, Dado dados)
+    public Utilidade(String nome, int precoDeCompra, int precoDeAluguel)
     {
-        super(nome, 150, 0);
-        this.dados = dados;
+        super(nome, precoDeCompra, precoDeAluguel);
     }
     //Metodos
     //Sobrecarga do método calcular aluguel para Utilidade
     @Override
-    public int calcularAluguel(int valor) {
+    public int calcularAluguel() 
+    {
         int precoDeAluguel;
 
-        valor = dados.getResultado();
+        int valor = jogador.getUltimoLancamento();
+        int num_utilidades = jogador.Num_Utilidades();
 
-        switch(jogador.Num_Utilidades())
+        switch(num_utilidades)
         {
             case 1:
                 precoDeAluguel = valor * 4;

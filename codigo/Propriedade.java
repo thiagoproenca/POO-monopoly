@@ -12,14 +12,14 @@ public abstract class Propriedade extends Espaco
     //Construtor
     public Propriedade(String nome, int precoDeCompra, int precoDeAluguel)
     {
-        super(nome);
+        this.nome = nome;
         this.precoDeCompra = precoDeCompra;
         this.precoDeAluguel = precoDeAluguel;
         ehPossuida = false;
     }
 
     //Métodos
-    public abstract int calcularAluguel(int valor);
+    public abstract int calcularAluguel();
 
     //Getters and Setters
 
