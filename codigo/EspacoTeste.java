@@ -13,6 +13,14 @@ public class EspacoTeste {
         // teste 2
         ExecutarTeste("iniciaEspacoImpostoIncorreto", 2);
         iniciaEspacoImpostoIncorreto(4);
+
+        // teste 3
+        ExecutarTeste("jogadorPagaTaxaFixa", 3);
+        jogadorPagaTaxaFixa(1300);
+
+        // teste 4
+        ExecutarTeste("jogadorPagaPorcentagemFortuna", 4);
+        jogadorPagaPorcentagemFortuna(1000);
     }
 
     public static void classeTestada(String nomeClasse) {
@@ -49,10 +57,10 @@ public class EspacoTeste {
         */
 
         public static void iniciaEspacoImpostoCorreto(int posicao) {
-            // saida esperada
-            System.out.println();
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: %d, %s\n", 5, "Imposto de Renda");
 
-            // teste
+            /* TESTE */
             ImpostoDeRenda ir1 = new ImpostoDeRenda(posicao);
 
             System.out.printf("\tPosicao: %d\n", ir1.getPosicao());
@@ -71,14 +79,77 @@ public class EspacoTeste {
         */
 
         public static void iniciaEspacoImpostoIncorreto(int posicao) {
-            // saida esperada
-            System.out.println();
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: %d, %s\n", 0, null);
 
-            // teste
+            /* TESTE */
             ImpostoDeRenda ir1 = new ImpostoDeRenda(posicao);
 
             System.out.printf("\tPosicao: %d\n", ir1.getPosicao());
             System.out.printf("\tNome: %s\n", ir1.getNome());
+        }
+
+        /* TESTE 3 - 'jogadorPagaTaxaFixa()'
+        * 
+        * OBJETIVO: mostrar que um objeto 'ImpostoDeRenda' passa o valor correto para que
+        * um objeto do tipo "Jogador" pague a taxa;
+        * o pagamento deve ser controlado pelo objeto "Banco", mas aqui nao sera usado.
+        * Para ilustrar, daremos um saldo inicial ao "Jogador" e 'pagaremos' a taxa;
+        * iremos supor que o jogador tem saldo o suficente para continuar no jogo.
+        * 
+        * METODO TESTADO: metodo publico - 'double pagarTaxaFixo()';
+        * o saldo inicial sera '$1300' e apos pagar a taxa, devera ter o saldo de '$1100'.
+        * 
+        * RETORNO: retorna o valor '200' como 'double' e retira o valor do saldo de 'Jogador'.
+        */
+
+        public static void jogadorPagaTaxaFixa(double saldoJogador) {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: $%.2f\n", 1100.0);
+
+            /* TESTE */
+            // declaração das classes usadas no teste
+            Jogador j1 = new Jogador("Everton");
+            ImpostoDeRenda ir1 = new ImpostoDeRenda(5);
+
+            // jogador recebe o saldo inicial de '$1300'
+            j1.setSaldo((float) saldoJogador);
+
+            // jogador paga '$200' da taxa de "ImpostoDeRenda"
+            j1.setSaldo((float) (j1.getSaldo() - ir1.pagarTaxaFixo()));
+
+            System.out.printf("\tSaldo: $%.2f\n", j1.getSaldo());
+        }
+
+        /* TESTE 4 - 'jogadorPagaPorcentagemFortuna()'
+        * 
+        * OBJETIVO: mostrar que um objeto 'ImpostoDeRenda' passa o valor correto para que
+        * um objeto do tipo "Jogador" pague 10% de sua como taxa de "ImpostoDeRenda";
+        * o pagamento deve ser controlado pelo objeto "Banco", mas aqui nao sera usado.
+        * Para ilustrar, daremos um saldo inicial ao "Jogador" e 'pagaremos' a taxa.
+        * 
+        * METODO TESTADO: metodo publico - 'double pagarTaxaPorcentagem(Jogador jogador)';
+        * o saldo inicial sera '$1000' e apos pagar a taxa, devera ter o saldo de '$900'.
+        * 
+        * RETORNO: retorna 10% da fortuna de "Jogador" como 'double' e retina esse valor do saldo do mesmo.
+        */
+
+        public static void jogadorPagaPorcentagemFortuna(double saldoJogador) {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: $%.2f\n", 900.0);
+
+            /* TESTE */
+            // declaração das classes usadas no teste
+            Jogador j1 = new Jogador("Rodnaldo");
+            ImpostoDeRenda ir1 = new ImpostoDeRenda(5);
+
+            // jogador recebe o saldo inicial de '$1300'
+            j1.setSaldo((float) saldoJogador);
+
+            // jogador paga 10% da fortuna ('$100') como taxa de "ImpostoDeRenda"
+            j1.setSaldo((float) (j1.getSaldo() - ir1.pagarTaxaPorcentagem(j1)));
+
+            System.out.printf("\tSaldo: $%.2f\n", j1.getSaldo());
         }
     
     /* TESTES - EstacionamentoGratis */
