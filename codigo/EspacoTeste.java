@@ -1,7 +1,32 @@
+/* Autor: 
+ * Arthur Nitto e Thiago Proença
+ * 
+ * Descrição da classe: 
+ * Classe utilizada para realizar os testes das classes 'Espaco' e todas as suas sub-classes.
+ * Cada teste tem a descricao de seu objetivo, metodo testado e o resultado (retorno) do mesmo.
+ */
+
 public class EspacoTeste {
     // classe responsavel pelos testes da classe 'Espaco' e suas sub-classes
     
     public static void main(String[] args) {
+        /* Espaco */
+        // classeTestada("Espaco");
+    
+        /* PontoDePartida */
+        // classeTestada("PontoDePartida");
+    
+        /* VaParaCadeia */
+        // classeTestada("VaParaCadeia");
+    
+        /* Cadeia */
+        // classeTestada("Cadeia");
+    
+        /* EspacoDeCarta */
+        // classeTestada("EspacoDeCarta");
+    
+        /* TaxaDeRiqueza */
+        // classeTestada("TaxaDeRiqueza");
 
         /* ImpostoDeRenda */
         classeTestada("ImpostoDeRenda");
@@ -21,6 +46,9 @@ public class EspacoTeste {
         // teste 4
         ExecutarTeste("jogadorPagaPorcentagemFortuna", 4);
         jogadorPagaPorcentagemFortuna(1000);
+
+        /* EstacionamentoGratis */
+        // classeTestada("EstacionamentoGratis");
     }
 
     public static void classeTestada(String nomeClasse) {
@@ -153,7 +181,5 @@ public class EspacoTeste {
         }
     
     /* TESTES - EstacionamentoGratis */
-
-
     
 }
