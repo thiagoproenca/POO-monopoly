@@ -96,7 +96,19 @@ public class EspacoTeste {
         tiraCartaErro(0);
 
         /* TaxaDeRiqueza */
-        // classeTestada("TaxaDeRiqueza");
+        classeTestada("TaxaDeRiqueza");
+
+        // teste 1
+        ExecutarTeste("iniciaEspacoTaxaCorreto", 1);
+        iniciaEspacoTaxaCorreto(39);
+
+        // teste 2
+        ExecutarTeste("iniciaEspacoTaxaIncorreto", 2);
+        iniciaEspacoTaxaIncorreto(7);
+        
+        // teste 3
+        ExecutarTeste("jogadorPagaTaxa", 3);
+        jogadorPagaTaxa(1500);
 
         /* ImpostoDeRenda */
         classeTestada("ImpostoDeRenda");
@@ -515,6 +527,82 @@ public class EspacoTeste {
 
 
     /* TESTES - TaxaDeRiqueza */
+
+        /* TESTE 1 - 'iniciaEspacoTaxaCorreto()'
+        * 
+        * OBJETIVO: verificar se um objeto 'TaxaDeRiqueza', sub-classe de 'Espaco' foi iniciado corretamente;
+        * os atributos 'nome' e 'posicao' devem ser "Taxa de Riqueza" e '39', respectivamente.
+        * 
+        * METODO TESTADO: contrutor - 'TaxaDeRiqueza(int posicao)';
+        * para ser iniciado, é passado uma posicao (que sera a sua posicao em 'Tabuleiro').
+        * 
+        * RETORNO: constroi um objeto do tipo 'TaxaDeRiqueza' para ser utilizado como 'Espaco' em 'Tabuleiro'.
+        */
+
+        public static void iniciaEspacoTaxaCorreto(int posicao) {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: %d, %s\n", 39, "Taxa de Riqueza");
+
+            /* TESTE */
+            TaxaDeRiqueza tr1 = new TaxaDeRiqueza(posicao);
+
+            System.out.printf("\tPosicao: %d\n", tr1.getPosicao());
+            System.out.printf("\tNome: %s\n", tr1.getNome());
+        }
+
+        /* TESTE 2 - 'iniciaEspacoTaxaIncorreto()'
+        * 
+        * OBJETIVO: verificar o que um objeto 'TaxaDeRiqueza' entrega quando iniciado incorretamente;
+        * o atributo 'nome' deve ser nulo, e o atributo 'posicao' deve ser '0' (zero).
+        * 
+        * METODO TESTADO: contrutor - 'TaxaDeRiqueza(int posicao)';
+        * neste teste, inicializaremos ele com um numero diferente de '39'.
+        * 
+        * RETORNO: constroi um objeto do tipo 'TaxaDeRiqueza' para ser utilizado como 'Espaco' em 'Tabuleiro'.
+        */
+
+        public static void iniciaEspacoTaxaIncorreto(int posicao) {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: %d, %s\n", 0, null);
+
+            /* TESTE */
+            TaxaDeRiqueza tr1 = new TaxaDeRiqueza(posicao);
+
+            System.out.printf("\tPosicao: %d\n", tr1.getPosicao());
+            System.out.printf("\tNome: %s\n", tr1.getNome());
+        }
+
+        /* TESTE 3 - 'jogadorPagaTaxa()'
+        * 
+        * OBJETIVO: mostrar que um objeto 'TaxaDeRiqueza' passa o valor correto para que
+        * um objeto do tipo "Jogador" pague a taxa a "Banco";
+        * o pagamento deve ser controlado pelo objeto "Banco", mas aqui nao sera usado.
+        * Para ilustrar, daremos um saldo inicial ao "Jogador" e 'pagaremos' a taxa;
+        * iremos supor que o jogador tem saldo o suficente para continuar no jogo.
+        * 
+        * METODO TESTADO: metodo publico - 'double pagarTaxaFixo()';
+        * o saldo inicial sera '$1500' e apos pagar a taxa, devera ter o saldo de '$1300'.
+        * 
+        * RETORNO: retorna o valor '200' como 'double' e retira o valor do saldo de 'Jogador'.
+        */
+
+        public static void jogadorPagaTaxa(double saldoJogador) {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: $%.2f\n", 1300.0);
+
+            /* TESTE */
+            // declaração das classes usadas no teste
+            Jogador j1 = new Jogador("Welington");
+            TaxaDeRiqueza tr1 = new TaxaDeRiqueza(39);
+
+            // jogador recebe o saldo inicial de '$1500'
+            j1.setSaldo((float) saldoJogador);
+
+            // jogador paga '$200' da taxa de "ImpostoDeRenda"
+            j1.setSaldo((float) (j1.getSaldo() - tr1.pagarTaxa()));
+
+            System.out.printf("\tSaldo: $%.2f\n", j1.getSaldo());
+        }
     
     /* TESTES - ImpostoDeRenda */
 
