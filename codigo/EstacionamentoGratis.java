@@ -1,3 +1,11 @@
+/* Autor: 
+ * Thiago Proença
+ * 
+ * Descrição da classe: 
+ * Classe que implementa "EstacionamentoGratis" no "Tabuleiro". Essa classe nao tem nenhuma resposabilidade;
+ * ela implementa um "Espaco" no "Tabuleiro" que nao tem nenhuma funcao.
+ */
+
 public class EstacionamentoGratis extends Espaco {
     // atributos
 
