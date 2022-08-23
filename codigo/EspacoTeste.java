@@ -491,7 +491,7 @@ public class EspacoTeste {
             System.out.println("Carta: "+carta.getNome());
         }
 
-        /* TESTE 3 - 'tiraCartaErro()'
+        /* TESTE 5 - 'tiraCartaErro()'
         * 
         * OBJETIVO: verificar se o método retorna -1 como resposta, ao inicializar o método com
         * uma posição inválida
