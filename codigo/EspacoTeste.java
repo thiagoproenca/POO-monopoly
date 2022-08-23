@@ -150,6 +150,10 @@ public class EspacoTeste {
     }
 
     /* TESTES - Espaco */
+
+        /* Os metodos da classe "Espaco" sao testados indiretamente por suas sub-classes; 
+        * os testes para a mesma sao redundantes entao nao serao realizados.
+        */
     
     /* TESTES - PontoDePartida */
 
