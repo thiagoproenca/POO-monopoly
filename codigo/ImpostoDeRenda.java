@@ -1,3 +1,12 @@
+/* Autor: 
+ * Thiago Proença
+ * 
+ * Descrição da classe: 
+ * Classe que implementa um espaco "ImpostoDeRenda" no "Tabuleiro"; essa classe tem a responsabilidade de
+ * retornar ao "Banco" o valor da 'imposto de renda' para que o jogador pague essa taxa.
+ * O "Jogador" tera a opcao de pagar uma taxa fixa ou 10% da sua fortuna.
+ */
+
 public class ImpostoDeRenda extends Espaco {
     // atributos
     private double imposto;
