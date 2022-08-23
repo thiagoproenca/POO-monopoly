@@ -5,12 +5,14 @@ public class Jogador{
 //  private Propriedade[] propriedades;
     private int[] lancamentos;
     private boolean estarNaCadeia;
+    private int posicao;
 
     public Jogador(String nome){
         this.nome = nome;
         this.saldo = 1500;
         this.lancamentos = new int[3];
         this.estarNaCadeia = false;
+        this.posicao = 1;
     }
 
     public String getNome() {
@@ -51,5 +53,13 @@ public class Jogador{
 
     public void setEstarNaCadeia(boolean estarNaCadeia) {
         this.estarNaCadeia = estarNaCadeia;
+    }
+
+    public int getPosicao(){
+        return posicao;
+    }
+
+    public void setPosicao(int posicao){
+        this.posicao = posicao;
     }
 }
