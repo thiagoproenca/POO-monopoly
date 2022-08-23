@@ -48,7 +48,15 @@ public class EspacoTeste {
         jogadorPagaPorcentagemFortuna(1000);
 
         /* EstacionamentoGratis */
-        // classeTestada("EstacionamentoGratis");
+        classeTestada("EstacionamentoGratis");
+
+        // teste 1
+        ExecutarTeste("iniciaEspacoEstacionamentoCorreto", 1);
+        iniciaEspacoEstacionamentoCorreto(21);
+
+        // teste 2
+        ExecutarTeste("iniciaEspacoEstacionamentoIncorreto", 2);
+        iniciaEspacoEstacionamentoIncorreto(3);
     }
 
     public static void classeTestada(String nomeClasse) {
@@ -181,5 +189,49 @@ public class EspacoTeste {
         }
     
     /* TESTES - EstacionamentoGratis */
+
+        /* TESTE 1 - 'iniciaEspacoEstacionamentoCorreto()'
+        * 
+        * OBJETIVO: verificar se um objeto 'EstacionamentoGratis', sub-classe de 'Espaco' foi iniciado corretamente;
+        * os atributos 'nome' e 'posicao' devem ser "Estacionamento grátis" e '21', respectivamente.
+        * 
+        * METODO TESTADO: contrutor - 'EstacionamentoGratis(int posicao)';
+        * para ser iniciado, é passado uma posicao (que sera a sua posicao em 'Tabuleiro').
+        * 
+        * RETORNO: constroi um objeto do tipo 'EstacionamentoGratis' para ser utilizado como 'Espaco' em 'Tabuleiro'.
+        */
+
+        public static void iniciaEspacoEstacionamentoCorreto(int posicao) {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: %d, %s\n", 21, "Estacionamento grátis");
+
+            /* TESTE */
+            EstacionamentoGratis eg1 = new EstacionamentoGratis(posicao);
+
+            System.out.printf("\tPosicao: %d\n", eg1.getPosicao());
+            System.out.printf("\tNome: %s\n", eg1.getNome());
+        }
+
+        /* TESTE 2 - 'iniciaEspacoEstacionamentoIncorreto()'
+        * 
+        * OBJETIVO: verificar o que um objeto 'EstacionamentoGratis' entrega quando iniciado incorretamente;
+        * o atributo 'nome' deve ser nulo, e o atributo 'posicao' deve ser '0' (zero).
+        * 
+        * METODO TESTADO: contrutor - 'EstacionamentoGratis(int posicao)';
+        * neste teste, inicializaremos ele com um numero diferente de '21'.
+        * 
+        * RETORNO: constroi um objeto do tipo 'EstacionamentoGratis' para ser utilizado como 'Espaco' em 'Tabuleiro'.
+        */
+
+        public static void iniciaEspacoEstacionamentoIncorreto(int posicao) {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: %d, %s\n", 0, null);
+
+            /* TESTE */
+            EstacionamentoGratis eg1 = new EstacionamentoGratis(posicao);
+
+            System.out.printf("\tPosicao: %d\n", eg1.getPosicao());
+            System.out.printf("\tNome: %s\n", eg1.getNome());
+        }
     
 }
