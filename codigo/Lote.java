@@ -15,7 +15,7 @@ public class Lote extends Propriedade
     private int precodeConstrucao;
     private int precoDeAluguel;
     private int precoDeAluguelCasaConstruida;
-    //private boolean ehPossuida; 
+  
 
     //Construtor
     public Lote(Jogador jogador, int posicao)
@@ -32,27 +32,18 @@ public class Lote extends Propriedade
          */
 
         super(jogador);
-        this.posicao = posicao;
-        //ehPossuida = false;
+        calcularAtributos(posicao);
+      
     }
 
     /**
      *
      * Métodos Getters e Setters de cada atributo da classe.
      */
-    /*public boolean getEhPossuida() 
-    {
-        return ehPossuida;
-    }
-
-    public void setEhPossuida(boolean ehPossuida) 
-    {
-        this.ehPossuida = ehPossuida;
-    }*/
 
     public int getPosicao() 
     {
-        return posicao;
+        return (this.posicao);
     }
 
     public void setPosicao(int posicao) 
@@ -62,7 +53,7 @@ public class Lote extends Propriedade
 
     public String getCor() 
     {
-        return cor;
+        return (this.cor);
     }
 
     public void setCor(String cor) 
@@ -72,7 +63,7 @@ public class Lote extends Propriedade
 
     public int getPreco() 
     {
-        return preco;
+        return (this.preco);
     }
 
     public void setPreco(int preco) 
@@ -82,7 +73,7 @@ public class Lote extends Propriedade
 
     public int getPrecoDeAluguel() 
     {
-        return precoDeAluguel;
+        return (this.precoDeAluguel);
     }
 
     public void setPrecoDeAluguel(int precoDeAluguel) 
@@ -92,7 +83,7 @@ public class Lote extends Propriedade
 
     public int getPrecodeConstrucao() 
     {
-        return precodeConstrucao;
+        return (this.precodeConstrucao);
     }
 
     public void setPrecodeConstrucao(int precodeConstrucao)    
@@ -102,7 +93,7 @@ public class Lote extends Propriedade
 
     public int getPrecoDeAluguelCasaConstruida() 
     {
-        return precoDeAluguelCasaConstruida;
+        return (this.precoDeAluguelCasaConstruida);
     }
 
     public void setPrecoDeAluguelCasaConstruida(int precoDeAluguelCasaConstruida) 
@@ -131,187 +122,217 @@ public class Lote extends Propriedade
          * aloca os valores corretos nos atributos da classe de acordo com o valor contido da variável posicao, usando
          * a estrutura condicional Switch - Case.
          */
-
+        
+        
         switch (posicao)
         {
     
             case 2:
-                cor = "Marrom";
-                preco = 60;
-                precodeConstrucao = 50;
-                precoDeAluguel = 2;
-                precoDeAluguelCasaConstruida = 10;
+            
+                setCor("Marrom");
+                setPreco(60);
+                setPrecodeConstrucao(50);
+                setPrecoDeAluguel(2);
+                setPrecoDeAluguelCasaConstruida(10);
+                setPosicao(posicao);
+                //getCor();
+                //getPrecoDeAluguel();
                 break;
 
             case 4:
-                cor = "Marrom";
-                preco = 60;
-                precodeConstrucao = 50;
-                precoDeAluguel = 4;
-                precoDeAluguelCasaConstruida = 20;
+                setCor("Marrom");
+                setPreco(60);
+                setPrecodeConstrucao(50);
+                setPrecoDeAluguel(4);
+                setPrecoDeAluguelCasaConstruida(20);
+                setPosicao(posicao);
                 break;
 
             case 7:
-                cor = "Azul Claro";
-                preco = 100;
-                precodeConstrucao = 50;
-                precoDeAluguel = 6;
-                precoDeAluguelCasaConstruida = 30;
+                setCor("Azul Claro");
+                setPreco(100);
+                setPrecodeConstrucao(50);
+                setPrecoDeAluguel(6);
+                setPrecoDeAluguelCasaConstruida(30);
+                setPosicao(posicao);
                 break;
 
             case 9:
-                cor = "Azul Claro";
-                preco = 100;
-                precodeConstrucao = 50;
-                precoDeAluguel = 6;
-                precoDeAluguelCasaConstruida = 30;
+                setCor("Azul Claro");
+                setPreco(100);
+                setPrecodeConstrucao(50);
+                setPrecoDeAluguel(6);
+                setPrecoDeAluguelCasaConstruida(30);
+                setPosicao(posicao);
                 break;
 
             case 10:
-                cor = "Azul Claro";
-                preco = 120;
-                precodeConstrucao = 50;
-                precoDeAluguel = 8;
-                precoDeAluguelCasaConstruida = 40;
+                setCor("Azul Claro");
+                setPreco(120);
+                setPrecodeConstrucao(50);
+                setPrecoDeAluguel(8);
+                setPrecoDeAluguelCasaConstruida(40);
+                setPosicao(posicao);
                 break;
 
             case 12:
-                cor = "Rosa";
-                preco = 140;
-                precodeConstrucao = 100;
-                precoDeAluguel = 10;
-                precoDeAluguelCasaConstruida = 50;
+                setCor("Rosa");
+                setPreco(140);
+                setPrecodeConstrucao(100);
+                setPrecoDeAluguel(10);
+                setPrecoDeAluguelCasaConstruida(50);
+                setPosicao(posicao);
                 break;
 
             case 14:
-                cor = "Rosa";
-                preco = 140;
-                precodeConstrucao = 100;
-                precoDeAluguel = 10;
-                precoDeAluguelCasaConstruida = 50;
+                setCor("Rosa");
+                setPreco(140);
+                setPrecodeConstrucao(100);
+                setPrecoDeAluguel(10);
+                setPrecoDeAluguelCasaConstruida(50);
+                setPosicao(posicao);
                 break;
 
             case 15:
-                cor = "Rosa";
-                preco = 160;
-                precodeConstrucao = 100;
-                precoDeAluguel = 12;
-                precoDeAluguelCasaConstruida = 60;
+                setCor("Rosa");
+                setPreco(160);
+                setPrecodeConstrucao(100);
+                setPrecoDeAluguel(12);
+                setPrecoDeAluguelCasaConstruida(60);
+                setPosicao(posicao);
                 break;
 
             case 17:
-                cor = "Laranja";
-                preco = 180;
-                precodeConstrucao = 100;
-                precoDeAluguel = 14;
-                precoDeAluguelCasaConstruida = 70;
+                setCor("Laranja");
+                setPreco(180);
+                setPrecodeConstrucao(100);
+                setPrecoDeAluguel(14);
+                setPrecoDeAluguelCasaConstruida(70);
+                setPosicao(posicao);
                 break;
 
             case 19:
-                cor = "Laranja";
-                preco = 180;
-                precodeConstrucao = 100;
-                precoDeAluguel = 14;
-                precoDeAluguelCasaConstruida = 70;
+                setCor("Laranja");
+                setPreco(180);
+                setPrecodeConstrucao(100);
+                setPrecoDeAluguel(14);
+                setPrecoDeAluguelCasaConstruida(70);
+                setPosicao(posicao);
                 break;
 
             case 20:
-                cor = "Laranja";
-                preco = 200;
-                precodeConstrucao = 100;
-                precoDeAluguel = 16;
-                precoDeAluguelCasaConstruida = 80;
+                setCor("Laranja");
+                setPreco(200);
+                setPrecodeConstrucao(100);
+                setPrecoDeAluguel(16);
+                setPrecoDeAluguelCasaConstruida(80);
+                setPosicao(posicao);
                 break;
 
             case 22:
-                cor = "Vermelho";
-                preco = 220;
-                precodeConstrucao = 150;
-                precoDeAluguel = 18;
-                precoDeAluguelCasaConstruida = 90;
+                setCor("Vermelho");
+                setPreco(220);
+                setPrecodeConstrucao(150);
+                setPrecoDeAluguel(18);
+                setPrecoDeAluguelCasaConstruida(90);
+                setPosicao(posicao);
                 break;
 
             case 24:
-                cor = "Vermelho";
-                preco = 220;
-                precodeConstrucao = 150;
-                precoDeAluguel = 18;
-                precoDeAluguelCasaConstruida = 90;
+                setCor("Vermelho");
+                setPreco(220);
+                setPrecodeConstrucao(150);
+                setPrecoDeAluguel(18);
+                setPrecoDeAluguelCasaConstruida(90);
+                setPosicao(posicao);
                 break;
 
             case 25:
-                cor = "Vermelho";
-                preco = 240;
-                precodeConstrucao = 150;
-                precoDeAluguel = 20;
-                precoDeAluguelCasaConstruida = 100;
+                setCor("Vermelho");
+                setPreco(240);
+                setPrecodeConstrucao(150);
+                setPrecoDeAluguel(20);
+                setPrecoDeAluguelCasaConstruida(100);
+                setPosicao(posicao);
                 break;
 
             case 27:
-                cor = "Amarelo";
-                preco = 260;
-                precodeConstrucao = 150;
-                precoDeAluguel = 22;
-                precoDeAluguelCasaConstruida = 110;
+                setCor("Amarelo");
+                setPreco(260);
+                setPrecodeConstrucao(150);
+                setPrecoDeAluguel(22);
+                setPrecoDeAluguelCasaConstruida(110);
+                setPosicao(posicao);
+                
                 break;
 
             case 28:
-                cor = "Amarelo";
-                preco = 260;
-                precodeConstrucao = 150;
-                precoDeAluguel = 22;
-                precoDeAluguelCasaConstruida = 110;
+                setCor("Amarelo");
+                setPreco(260);
+                setPrecodeConstrucao(150);
+                setPrecoDeAluguel(22);
+                setPrecoDeAluguelCasaConstruida(110);
                 break;
 
             case 30:
-                cor = "Amarelo";
-                preco = 280;
-                precodeConstrucao = 150;
-                precoDeAluguel = 24;
-                precoDeAluguelCasaConstruida = 120;
+                setCor("Amarelo");
+                setPreco(280);
+                setPrecodeConstrucao(150);
+                setPrecoDeAluguel(24);
+                setPrecoDeAluguelCasaConstruida(120);
+                setPosicao(posicao);
                 break;
 
             case 32:
-                cor = "Verde";
-                preco = 300;
-                precodeConstrucao = 200;
-                precoDeAluguel = 26;
-                precoDeAluguelCasaConstruida = 130;
+                setCor("Verde");
+                setPreco(300);
+                setPrecodeConstrucao(200);
+                setPrecoDeAluguel(26);
+                setPrecoDeAluguelCasaConstruida(130);
+                setPosicao(posicao);
                 break;
 
             case 33:
-                cor = "Verde";
-                preco = 300;
-                precodeConstrucao = 200;
-                precoDeAluguel = 26;
-                precoDeAluguelCasaConstruida = 130;
+                setCor("Verde");
+                setPreco(300);
+                setPrecodeConstrucao(200);
+                setPrecoDeAluguel(26);
+                setPrecoDeAluguelCasaConstruida(130);
+                setPosicao(posicao);
                 break;
 
             case 35:
-                cor = "Verde";
-                preco = 320;
-                precodeConstrucao = 200;
-                precoDeAluguel = 28;
-                precoDeAluguelCasaConstruida = 150;
+                setCor("Verde");
+                setPreco(320);
+                setPrecodeConstrucao(200);
+                setPrecoDeAluguel(28);
+                setPrecoDeAluguelCasaConstruida(150);
+                setPosicao(posicao);
                 break;
 
             case 38:
-                cor = "Azul";
-                preco = 350;
-                precodeConstrucao = 200;
-                precoDeAluguel = 35;
-                precoDeAluguelCasaConstruida = 175;
-                break;
+                setCor("Azul");
+                setPreco(350);
+                setPrecodeConstrucao(200);
+                setPrecoDeAluguel(35);
+                setPrecoDeAluguelCasaConstruida(175);
+                setPosicao(posicao);
 
             case 40:
-                cor = "Azul";
-                preco = 400;
-                precodeConstrucao = 200;
-                precoDeAluguel = 50;
-                precoDeAluguelCasaConstruida = 200;
+                setCor("Azul");
+                setPreco(400);
+                setPrecodeConstrucao(200);
+                setPrecoDeAluguel(50);
+                setPrecoDeAluguelCasaConstruida(200);
+                setPosicao(posicao);
                 break;
             default:
-                System.out.println("Erro! Não Temos Lotes Nessa posição " + posicao);
+                setCor("Sem Cor");
+                setPreco(-1);
+                setPrecodeConstrucao(-1);
+                setPrecoDeAluguel(-1);
+                setPrecoDeAluguelCasaConstruida(-1);
+                setPosicao(0);
                 break;
         }
 

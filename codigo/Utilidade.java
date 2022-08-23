@@ -16,40 +16,51 @@ public class Utilidade extends Propriedade
     private int precoDeAluguel;
     private int utilidades; // Variável que deve ter o valor atribuito pelo construtor. Esse valor deve ser passado pela classe Jogador.
     private int posicao;
-    //private boolean ehPossuida;
+    private int preco;
+   
 
     //Construtor
-    public Utilidade(Jogador jogador, int utilidades, int posicao)
+    public Utilidade(Jogador jogador, int posicao)
     {
         super(jogador);
-        this.utilidades = utilidades;
-        this.posicao = posicao;
-        //ehPossuida = false;
+        calcularAtributos(posicao);
+    
     }
 
     //Métodos
     @Override
     public void calcularAluguel() 
     {
-
-        /**
-         * Método calcularAluguel() implementado pela classe Utilidade. Aqui usamos o valor da variável utilidades como
-         * referência para uso na estrutura Switch - Case, que determina como deve ser calculado o aluguel de uma
-         * Utilidade.
-         */
-        int valor = jogador.getUltimoLancamento();
-        utilidades = jogador.Num_Utilidades();
-        switch(utilidades)
+        if(posicao == 13 || posicao == 29)
         {
-            case 1:
-                precoDeAluguel = valor * 4;
-                break;
-            case 2:
-                precoDeAluguel = valor * 10;
-                break;
-            default:
-            System.out.println("Erro! Só existem 2 Utilidades no Jogo");
-            break;
+
+        
+            /**
+             * Método calcularAluguel() implementado pela classe Utilidade. Aqui usamos o valor da variável utilidades como
+             * referência para uso na estrutura Switch - Case, que determina como deve ser calculado o aluguel de uma
+             * Utilidade.
+             */
+            int valor = jogador.getUltimoLancamento();
+            utilidades = jogador.Num_Utilidades();
+            switch(utilidades)
+            {
+                case 1:
+                    precoDeAluguel = valor * 4;
+                    jogador.setPosicao(posicao);
+                    break;
+                case 2:
+                    precoDeAluguel = valor * 10;
+                    break;
+                default:
+                    setPrecoDeAluguel(-1);
+                    System.out.println("Erro! Só existem 2 Utilidades no Jogo");
+                    jogador.setPosicao(posicao);
+                    break;
+            }
+        }
+        else
+        {
+            calcularAtributos(posicao);
         }
     }
 
@@ -57,10 +68,18 @@ public class Utilidade extends Propriedade
      *
      * Métodos Getters e Setters de cada atributo da classe.
      */
-
-    public int getPreçoDeAluguel() 
+    public int getPreco() 
     {
-        return precoDeAluguel;
+        return (this.preco);
+    }
+
+    public void setPreco(int preco) 
+    {
+        this.preco = preco;
+    }
+    public int getPrecoDeAluguel() 
+    {
+        return (this.precoDeAluguel);
     }
 
     public void setPrecoDeAluguel(int precoDeAluguel) 
@@ -70,30 +89,43 @@ public class Utilidade extends Propriedade
 
     public int getUtilidades() 
     {
-        return utilidades;
+        return (this.utilidades);
     }
 
     public void setUtilidades(int utilidades) 
     {
         this.utilidades = utilidades;
     }
-    /*public boolean getEhPossuida() 
-    {
-        return ehPossuida;
-    }
-
-    public void setEhPossuida(boolean ehPossuida) 
-    {
-        this.ehPossuida = ehPossuida;
-    }*/
 
     public int getPosicao() 
     {
-        return posicao;
+        return (this.posicao);
     }
 
     public void setPosicao(int posicao) 
     {
         this.posicao = posicao;
+    }
+
+    public void calcularAtributos(int posicao)
+    {
+        switch (posicao)
+        {
+    
+            case 13:
+                setPreco(150);
+                System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
+                setPosicao(posicao);
+            break;
+            case 29:
+                setPreco(150);
+                System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
+                setPosicao(posicao);
+            break;
+            default:
+                setPrecoDeAluguel(-1);
+                setPosicao(0);
+                break;
+        }
     }
 }

@@ -17,17 +17,16 @@ public class Estacao_de_Metro extends Propriedade
     private int precoDeAluguel = 25; //Valor padrão do aluguel de uma EstaçãoDeMetro.
     private int estacoes; //Variável que deve ter o valor atribuido pelo construtor. Esse valor deve ser passado pela classe Jogador.
     private int posicao;
-    //private boolean ehPossuida;
+    private int preco;
     
+
     //Construtor
-    public Estacao_de_Metro(Jogador jogador, int estacoes, int posicao)
+    public Estacao_de_Metro(Jogador jogador, int posicao)
     {
 
         super(jogador);
-        this.estacoes = 0;
-        this.posicao = posicao;
-        //ehPossuida = false;
-
+        calcularAtributos(posicao);
+    
     }
 
     //Métodos
@@ -38,36 +37,43 @@ public class Estacao_de_Metro extends Propriedade
          * Método calcularAluguel() implementado pela classe EstaçãoDeMetrô. Esse método usa o valor da variável
          * estacoes para calcular o valor do aluguel, com o uso de uma estrutura condicional Switch - Case.
          */
-        estacoes = jogador.Num_Estacoes__de_Metro();
-        if(precoDeAluguel < 200 && estacoes <= 4) 
-        {
 
-            switch(estacoes)
+        if(posicao == 6 || posicao == 16 || posicao == 26 || posicao ==36)
+        {
+            estacoes = jogador.Num_Estacoes__de_Metro();
+            if(precoDeAluguel < 200 && estacoes <= 4) 
             {
-                case 1:
-                    precoDeAluguel *= 1;
-                    break;
-            
-                case 2:
-                    precoDeAluguel *= 2;
-                    break;
-                case 3:
-                    precoDeAluguel *= 4;
-                    break;
-                case 4:
-                    precoDeAluguel *= 8;
-                    break;
-                default:
-                    System.out.println("Erro! Só existem 4 estações no Jogo! Não é possível  Calcular o aluguel de uma Estação Nesses termos! Nao temos " + estacoes +" Estações");
-                    break;
+
+                switch(estacoes)
+                {
+                    case 1:
+                        precoDeAluguel *= 1;
+                        break;
+                
+                    case 2:
+                        precoDeAluguel *= 2;
+                        break;
+                    case 3:
+                        precoDeAluguel *= 4;
+                        break;
+                    case 4:
+                        precoDeAluguel *= 8;
+                        break;
+                    default:
+                        calcularAtributos(posicao);
+                        break;
+                }
+            }
+            if(estacoes > 4)
+            {
+                
+                calcularAtributos(posicao);
+
             }
         }
-
-        if(estacoes > 4)
+        else
         {
-            //erro - não temos mais do que 4 estacoes de metro
-            System.out.println("Erro! Só existem 4 estações no Jogo! Não é possível Calcular o aluguel de uma Estação Nesses termos! Nao temos " + estacoes +" Estações");
-
+            calcularAtributos(posicao); 
         }
 
     }
@@ -96,14 +102,48 @@ public class Estacao_de_Metro extends Propriedade
     {
         this.estacoes = estacoes;
     }
-    /*public boolean getEhPossuida() 
+    public int getPreco() 
     {
-        return ehPossuida;
+        return preco;
     }
 
-    public void setEhPossuida(boolean ehPossuida) 
+    public void setPreco(int preco) 
     {
-        this.ehPossuida = ehPossuida;
-    }*/
+        this.preco = preco;
+    }
+
+    public void calcularAtributos(int posicao)
+    {
+
+        switch (posicao)
+        {
+    
+            case 6:
+                setPreco(200);
+                System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
+                setPosicao(posicao);
+            break;
+            case 16:
+                setPreco(200);
+                System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
+                setPosicao(posicao);
+            break;
+            case 26:
+                setPreco(200);
+                System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
+                setPosicao(posicao);
+            break;
+            case 36:
+                setPreco(200);
+                System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
+                setPosicao(posicao);
+            break;
+            default:
+                setPrecoDeAluguel(-1);    
+                setPosicao(0);
+                break;
+        }
+    }
+    
 }
 

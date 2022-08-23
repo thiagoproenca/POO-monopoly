@@ -12,6 +12,7 @@ public abstract class Propriedade extends Espaco
     //Atributos    
         private int precoDeCompra;
         protected Jogador jogador;
+       
     
         //Construtor
         public Propriedade(Jogador jogador)
@@ -54,6 +55,7 @@ public abstract class Propriedade extends Espaco
         {
             this.jogador = jogador;
         }
+    
         /*public void informarComprador()
         {
             System.out.println("O proprietário dessa propriedade é: " + jogador);
