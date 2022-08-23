@@ -2,7 +2,7 @@ public class Jogador{
 
     private String nome;
     private float saldo;
-//  private Propriedade[] propriedades;
+    private Propriedade[] propriedades;
     private int[] lancamentos;
     private boolean estarNaCadeia;
     private int posicao;
@@ -61,5 +61,27 @@ public class Jogador{
 
     public void setPosicao(int posicao){
         this.posicao = posicao;
+    }
+
+    public int Num_Estacoes__de_Metro(){
+        int Num_Estacoes__de_Metro = 0;
+        for(Propriedade item : propriedades){
+            if(item instanceof Estacao_de_Metro){
+                Num_Estacoes__de_Metro++;
+            }
+        }
+
+        return Num_Estacoes__de_Metro;
+    }
+
+    public int Num_Utilidades(){
+        int Num_Utilidades = 0;
+        for(Propriedade item : propriedades){
+            if(item instanceof Utilidade){
+                Num_Utilidades++;
+            }
+        }
+
+        return Num_Utilidades;
     }
 }
