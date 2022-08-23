@@ -1,87 +1,69 @@
+public class Lote extends Propriedade
+{
 
-
-public class Lote extends Propriedade{
-
-    //Atributos
+    private int posicao;
     private String cor;
-    private int precoDeAluguel1;
-    private int precoDeAluguel2;
-    private int precoDeAluguel3;
-    private int precoDeAluguel4;
-    private int precoDeAluguelHotel;
-    private int numCasas;
+    private int preco;
+    private int precodeConstrucao;
+    private int precoDeAluguel;
+    private int precoDeAluguelCasaConstruida;
+    private boolean ehPossuida; 
 
-    //Construtor
-    public Lote(String nome, int precoDeCompra, int precoDeAluguel, int precoDeAluguel1, int precoDeAluguel2, int precoDeAluguel3, int precoDeAluguel4, int precoDeAluguelHotel)
+    public Lote(Jogador jogador, int posicao)
     {
-        super(nome, precoDeCompra, precoDeAluguel);
-        this.precoDeAluguel1 = precoDeAluguel1;
-        this.precoDeAluguel2 = precoDeAluguel2;
-        this.precoDeAluguel3 = precoDeAluguel3;
-        this.precoDeAluguel4 = precoDeAluguel4;
-        this.precoDeAluguelHotel = precoDeAluguelHotel;
+
+        /**
+         * Construtor da classe Lote. Recebe dois parâmetros, um do tipo referência Jogador e outro do tipo primitivo
+         * inteiro. A função super() chama o construtor da superclasse Propriedade e passa como parâmetro uma instância
+         * da classe Jogador.
+         *
+         * É passado também como parâmetro, um valor de tipo primitivo inteiro com o nome de posicao. Esse valor deve
+         * ser enviado para que o método calcularAluguel() possa retornar os dados corretos de acordo com a tabela de
+         * posições contidas no documento do projeto.
+         */
+
+        super(jogador);
+        this.posicao = posicao;
+        ehPossuida = false;
     }
-    //Metodos, getters, setters
-    public int getPrecoDeAluguel1() 
+
+    @Override
+    public void calcularAluguel() 
+    {   
+        /**
+         * Método que chama o método calcularAtributos(), que aloca o valor correto de cada um dos atributos da classe
+         * de acordo com o valor de posicao passado como parâmetro.
+         */
+        calcularAtributos(posicao);
+
+    }
+
+    /**
+     *
+     * Métodos Get e Set de cada atributo da classe.
+     */
+    public boolean getEhPossuida() 
     {
-        return precoDeAluguel1;
+        return ehPossuida;
     }
 
-    public void setPrecoDeAluguel1(int precoDeAluguel1) 
+    public void setEhPossuida(boolean ehPossuida) 
     {
-        this.precoDeAluguel1 = precoDeAluguel1;
+        this.ehPossuida = ehPossuida;
     }
 
-    public int getPrecoDeAluguel2() 
+    public int getPosicao() 
     {
-        return precoDeAluguel2;
+        return posicao;
     }
 
-    public void setPrecoDeAluguel2(int precoDeAluguel2) 
+    public void setPosicao(int posicao) 
     {
-        this.precoDeAluguel2 = precoDeAluguel2;
+        this.posicao = posicao;
     }
 
-    public int getPrecoDeAluguel3() 
+    public String getCor() 
     {
-        return precoDeAluguel3;
-    }
-
-    public void setPrecoDeAluguel3(int precoDeAluguel3) 
-    {
-        this.precoDeAluguel3 = precoDeAluguel3;
-    }
-
-    public int getPrecoDeAluguel4() 
-    {
-        return precoDeAluguel4;
-    }
-
-    public void setPrecoDeAluguel4(int precoDeAluguel4) 
-    {
-        this.precoDeAluguel4 = precoDeAluguel4;
-    }
-
-    public int getPrecoDeAluguelHotel() 
-    {
-        return precoDeAluguelHotel;
-    }
-
-    public void setPrecoDeAluguelHotel(int precoDeAluguelHotel) 
-    {
-        this.precoDeAluguelHotel = precoDeAluguelHotel;
-    }
-
-    public int getNumCasas() 
-    {
-        return numCasas;
-    }
-
-    public void setNumCasas(int numCasas) {
-        this.numCasas = numCasas;
-    }
-
-    public String getCor() {
         return cor;
     }
 
@@ -90,40 +72,238 @@ public class Lote extends Propriedade{
         this.cor = cor;
     }
 
-    @Override
-    public int calcularAluguel()
+    public int getPreco() 
     {
-        int precoDeAluguel = 0;
-        switch(numCasas)
+        return preco;
+    }
+
+    public void setPreco(int preco) 
+    {
+        this.preco = preco;
+    }
+
+    public int getPrecoDeAluguel() 
+    {
+        return precoDeAluguel;
+    }
+
+    public void setPrecoDeAluguel(int precoDeAluguel) 
+    {
+        this.precoDeAluguel = precoDeAluguel;
+    }
+
+    public int getPrecodeConstrucao() 
+    {
+        return precodeConstrucao;
+    }
+
+    public void setPrecodeConstrucao(int precodeConstrucao)    
+    {
+        this.precodeConstrucao = precodeConstrucao;
+    }
+
+    public int getPrecoDeAluguelCasaConstruida() 
+    {
+        return precoDeAluguelCasaConstruida;
+    }
+
+    public void setPrecoDeAluguelCasaConstruida(int precoDeAluguelCasaConstruida) 
+    {
+        this.precoDeAluguelCasaConstruida = precoDeAluguelCasaConstruida;
+    }
+
+    public void calcularAtributos(int posicao)
+    {
+
+        /**
+         *
+         * Implementação do método calcularAtributos(), que recebe um valor de tipo primitivo inteiro como parâmetro e
+         * aloca os valores corretos nos atributos da classe de acordo com o valor contido da variável posicao, usando
+         * a estrutura condicional Switch - Case.
+         */
+
+        switch (posicao)
         {
-            case 0:
-            precoDeAluguel = super.getPrecodeAluguel();
-                if(getEhPossuida())
-                {
-                    precoDeAluguel = precoDeAluguel * 2;//precoDeAluguel = precoDeAluguel * 5
-                }
-                break;
-            case 1:
-                precoDeAluguel = precoDeAluguel1;
-                break;
+
             case 2:
-                precoDeAluguel = precoDeAluguel2;
+                cor = "Marrom";
+                preco = 60;
+                precodeConstrucao = 50;
+                precoDeAluguel = 2;
+                precoDeAluguelCasaConstruida = 10;
                 break;
-            case 3:
-                precoDeAluguel = precoDeAluguel3;
-                break;
+
             case 4:
-                precoDeAluguel = precoDeAluguel4;
+                cor = "Marrom";
+                preco = 60;
+                precodeConstrucao = 50;
+                precoDeAluguel = 4;
+                precoDeAluguelCasaConstruida = 20;
                 break;
-            case 5:
-                precoDeAluguel = precoDeAluguelHotel;
+
+            case 7:
+                cor = "Azul Claro";
+                preco = 100;
+                precodeConstrucao = 50;
+                precoDeAluguel = 6;
+                precoDeAluguelCasaConstruida = 30;
+                break;
+
+            case 9:
+                cor = "Azul Claro";
+                preco = 100;
+                precodeConstrucao = 50;
+                precoDeAluguel = 6;
+                precoDeAluguelCasaConstruida = 30;
+                break;
+
+            case 10:
+                cor = "Azul Claro";
+                preco = 120;
+                precodeConstrucao = 50;
+                precoDeAluguel = 8;
+                precoDeAluguelCasaConstruida = 40;
+                break;
+
+            case 12:
+                cor = "Rosa";
+                preco = 140;
+                precodeConstrucao = 100;
+                precoDeAluguel = 10;
+                precoDeAluguelCasaConstruida = 50;
+                break;
+
+            case 14:
+                cor = "Rosa";
+                preco = 140;
+                precodeConstrucao = 100;
+                precoDeAluguel = 10;
+                precoDeAluguelCasaConstruida = 50;
+                break;
+
+            case 15:
+                cor = "Rosa";
+                preco = 160;
+                precodeConstrucao = 100;
+                precoDeAluguel = 12;
+                precoDeAluguelCasaConstruida = 60;
+                break;
+
+            case 17:
+                cor = "Laranja";
+                preco = 180;
+                precodeConstrucao = 100;
+                precoDeAluguel = 14;
+                precoDeAluguelCasaConstruida = 70;
+                break;
+
+            case 19:
+                cor = "Laranja";
+                preco = 180;
+                precodeConstrucao = 100;
+                precoDeAluguel = 14;
+                precoDeAluguelCasaConstruida = 70;
+                break;
+
+            case 20:
+                cor = "Laranja";
+                preco = 200;
+                precodeConstrucao = 100;
+                precoDeAluguel = 16;
+                precoDeAluguelCasaConstruida = 80;
+                break;
+
+            case 22:
+                cor = "Vermelho";
+                preco = 220;
+                precodeConstrucao = 150;
+                precoDeAluguel = 18;
+                precoDeAluguelCasaConstruida = 90;
+                break;
+
+            case 24:
+                cor = "Vermelho";
+                preco = 220;
+                precodeConstrucao = 150;
+                precoDeAluguel = 18;
+                precoDeAluguelCasaConstruida = 90;
+                break;
+
+            case 25:
+                cor = "Vermelho";
+                preco = 240;
+                precodeConstrucao = 150;
+                precoDeAluguel = 20;
+                precoDeAluguelCasaConstruida = 100;
+                break;
+
+            case 27:
+                cor = "Amarelo";
+                preco = 260;
+                precodeConstrucao = 150;
+                precoDeAluguel = 22;
+                precoDeAluguelCasaConstruida = 110;
+                break;
+
+            case 28:
+                cor = "Amarelo";
+                preco = 260;
+                precodeConstrucao = 150;
+                precoDeAluguel = 22;
+                precoDeAluguelCasaConstruida = 110;
+                break;
+
+            case 30:
+                cor = "Amarelo";
+                preco = 280;
+                precodeConstrucao = 150;
+                precoDeAluguel = 24;
+                precoDeAluguelCasaConstruida = 120;
+                break;
+
+            case 32:
+                cor = "Verde";
+                preco = 300;
+                precodeConstrucao = 200;
+                precoDeAluguel = 26;
+                precoDeAluguelCasaConstruida = 130;
+                break;
+
+            case 33:
+                cor = "Verde";
+                preco = 300;
+                precodeConstrucao = 200;
+                precoDeAluguel = 26;
+                precoDeAluguelCasaConstruida = 130;
+                break;
+
+            case 35:
+                cor = "Verde";
+                preco = 320;
+                precodeConstrucao = 200;
+                precoDeAluguel = 28;
+                precoDeAluguelCasaConstruida = 150;
+                break;
+
+            case 38:
+                cor = "Azul";
+                preco = 350;
+                precodeConstrucao = 200;
+                precoDeAluguel = 35;
+                precoDeAluguelCasaConstruida = 175;
+                break;
+
+            case 40:
+                cor = "Azul";
+                preco = 400;
+                precodeConstrucao = 200;
+                precoDeAluguel = 50;
+                precoDeAluguelCasaConstruida = 200;
                 break;
             default:
-                precoDeAluguel = -1; //ver como tratar essa excessão
+                //
                 break;
         }
 
-        return precoDeAluguel;
     }
 }
-

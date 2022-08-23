@@ -1,62 +1,62 @@
+/*
+ * Responsável: Maurício Kessongo
+ * Descrição: 
+ */
 
 
 public abstract class Propriedade extends Espaco 
 {
 
-    //Atributos
-    protected int precoDeCompra;
-    protected int precoDeAluguel;
-    protected Jogador jogador;//O comprador é o jogador, certo? Olhar a classe jogador para relacionar melhor com as outras classes
-    private boolean ehPossuida;//variavel que informa se uma propriedade é possuida por um jogador
+    //Atributos    
+        private int precoDeCompra;
+        protected Jogador jogador;
     
-    //Construtor
-    public Propriedade(String nome, int precoDeCompra, int precoDeAluguel)
-    {
-        this.nome = nome;
-        this.precoDeCompra = precoDeCompra;
-        this.precoDeAluguel = precoDeAluguel;
-        ehPossuida = false;
-    }
-
-    //Métodos
-    public abstract int calcularAluguel();
-
-    //Getters and Setters
-
-    public void setPrecoDeCompra(int precoDeCompra) 
-    {
-        this.precoDeCompra = precoDeCompra;//Depois dos testes será eliminado
-    }
-    public int getPrecoDeCompra() 
-    {
-        return precoDeCompra;
-    }
-    public void setPrecoDeAluguel(int precoDeAluguel)
-    {
-        this.precoDeAluguel = precoDeAluguel;//Depois dos testes será eliminado
-    }
-    public int getPrecodeAluguel()
-    {
-        return precoDeAluguel;
-    }
-    public void setJogador(Jogador jogador) 
-    {
-        this.jogador = jogador;
-    }
-
-    public Jogador getJogador() 
-    {
-        return jogador;
+        //Construtor
+        public Propriedade(Jogador jogador)
+        {
+    
+            /**
+             * Construtor da classe abstrata Propriedade, que recebe uma instância da classe Jogador.
+             */
+    
+            this.jogador = jogador;
+        }
+    
+        /**
+         * Método abstrato que deverá ser implementado por todas as classes que herdam da classe Propriedade.
+         */
+    
+        public abstract void calcularAluguel();
+    
+        /**
+         *
+         * Métodos Getters e Setters de todos os atributos que a classe Propriedade possui.
+         */
+    
+        public int getPrecoDeCompra() 
+        {
+            return precoDeCompra;
+        }
+    
+        public void setPrecoDeCompra(int precoDeCompra) 
+        {
+            this.precoDeCompra = precoDeCompra;
+        }
+    
+        public Jogador getJogador() 
+        {
+            return jogador;
+        }
+    
+        public void setJogador(Jogador jogador) 
+        {
+            this.jogador = jogador;
+        }
+        /*public void informarComprador()
+        {
+            System.out.println("O proprietário dessa propriedade é: " + jogador);
+        }
+        */
     }
     
-    public boolean getEhPossuida() 
-    {
-        return ehPossuida;
-    }
-    public void setEhPossuida()//Pensando em colocar private para dificultar o acesso ao monopolio
-    {
-        ehPossuida = true;
-    }
-
     
-}

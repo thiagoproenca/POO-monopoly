@@ -1,21 +1,32 @@
-public class Utilidade extends Propriedade{
 
-    //Construtor
-    public Utilidade(String nome, int precoDeCompra, int precoDeAluguel)
+public class Utilidade extends Propriedade
+{
+
+    private int precoDeAluguel;
+    private int utilidades; // Variável que deve ter o valor atribuito pelo construtor. Esse valor deve ser passado pela classe Jogador.
+    private int posicao;
+    private boolean ehPossuida;
+
+    public Utilidade(Jogador jogador, int utilidades, int posicao)
     {
-        super(nome, precoDeCompra, precoDeAluguel);
+        super(jogador);
+        this.utilidades = utilidades;
+        this.posicao = posicao;
+        ehPossuida = false;
     }
-    //Metodos
-    //Sobrecarga do método calcular aluguel para Utilidade
+
     @Override
-    public int calcularAluguel() 
+    public void calcularAluguel() 
     {
-        int precoDeAluguel;
 
+        /**
+         * Método calcularAluguel() implementado pela classe Utilidade. Aqui usamos o valor da variável utilidades como
+         * referência para uso na estrutura Switch - Case, que determina como deve ser calculado o aluguel de uma
+         * Utilidade.
+         */
         int valor = jogador.getUltimoLancamento();
-        int num_utilidades = jogador.Num_Utilidades();
-
-        switch(num_utilidades)
+        utilidades = jogador.Num_Utilidades();
+        switch(utilidades)
         {
             case 1:
                 precoDeAluguel = valor * 4;
@@ -24,12 +35,52 @@ public class Utilidade extends Propriedade{
                 precoDeAluguel = valor * 10;
                 break;
             default:
-                precoDeAluguel = -1;//Definir e tratar essa excessão
-                break;
-
+            //erro
+            break;
         }
-        return precoDeAluguel;
-
     }
 
+    /**
+     *
+     * Métodos Get e Set de cada atributo da classe.
+     */
+
+    public int getPreçoDeAluguel() 
+    {
+        return precoDeAluguel;
+    }
+
+    public void setPrecoDeAluguel(int precoDeAluguel) 
+    {
+        this.precoDeAluguel = precoDeAluguel;
+    }
+
+    public int getUtilidades() 
+    {
+        return utilidades;
+    }
+
+    public void setUtilidades(int utilidades) 
+    {
+        this.utilidades = utilidades;
+    }
+    public boolean getEhPossuida() 
+    {
+        return ehPossuida;
+    }
+
+    public void setEhPossuida(boolean ehPossuida) 
+    {
+        this.ehPossuida = ehPossuida;
+    }
+
+    public int getPosicao() 
+    {
+        return posicao;
+    }
+
+    public void setPosicao(int posicao) 
+    {
+        this.posicao = posicao;
+    }
 }
