@@ -1,3 +1,11 @@
+/* Autor: 
+ * Thiago Proença
+ * 
+ * Descrição da classe: 
+ * Classe que implementa um espaco "TaxaDeRiqueza" no "Tabuleiro". Essa classe fica responsavel por retornar
+ * um valor para que "Banco" possa entregar ao "Jogador" que cair neste espaco.
+ */
+
 public class TaxaDeRiqueza extends Espaco {
     // atributos
     private double taxa;
