@@ -2,8 +2,9 @@ public class VaParaCadeia extends Espaco {
     // atributos
     
     // construtor
-    public VaParaCadeia(int posicao) {
-        inicializaEspaco(posicao);
+    public VaParaCadeia(Jogador jogador) {
+        inicializaEspaco(jogador.getPosicao());
+        cadeia(jogador);
     }
 
     // getters e setters
@@ -16,5 +17,10 @@ public class VaParaCadeia extends Espaco {
                 setPosicao(posicao);
                 break;
         }
+    }
+
+    private void cadeia(Jogador jogador){
+        jogador.setEstarNaCadeia(true);
+        jogador.setPosicao(11);
     }
 }

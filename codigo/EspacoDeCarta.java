@@ -25,4 +25,15 @@ public class EspacoDeCarta extends Espaco {
                 break;
         }
     }
+
+    public int tipoDeCarta(){
+        //Caso a carta for do tipo COFRE, retorna 1
+        //Caso a carta for do tipo SORTE, retorna 0
+        //Caso a inicialização falhar, retorna -1
+        if(getNome() == NomeDoEspaco.COFRE.toString())
+            return 1;
+        else if(getNome() == NomeDoEspaco.SORTE.toString()) 
+            return 0;
+        else return -1;
+    }
 }
