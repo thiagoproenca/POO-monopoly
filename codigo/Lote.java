@@ -1,14 +1,23 @@
+/* Autor: 
+ * Maurício Kessongo
+ * 
+ * Descrição da classe: Classe que implementa uma propriedade "Lote" no "Espaco". Sub-classe de propriedade; essa classe é responsável por calcular
+ * o "preço de Aluguel" especificamente para um Lote para que quando um jogador cair no lote de outro, ele consiga chamar o método calcularAluguel()
+ * e pague o valor de aluguel certo, conforme está na tabela 1 que nos foi dada. Temos também o métodos calcularAtributos que recebe como parámetro uma
+ * variável "posicao" e por meio dessa aloca o valor correto de cada um dos atributos da classe de acordo com o valor de posicao passado como parâmetro.
+ */
 public class Lote extends Propriedade
 {
-
+    //Atributos
     private int posicao;
     private String cor;
     private int preco;
     private int precodeConstrucao;
     private int precoDeAluguel;
     private int precoDeAluguelCasaConstruida;
-    private boolean ehPossuida; 
+    //private boolean ehPossuida; 
 
+    //Construtor
     public Lote(Jogador jogador, int posicao)
     {
 
@@ -24,25 +33,14 @@ public class Lote extends Propriedade
 
         super(jogador);
         this.posicao = posicao;
-        ehPossuida = false;
-    }
-
-    @Override
-    public void calcularAluguel() 
-    {   
-        /**
-         * Método que chama o método calcularAtributos(), que aloca o valor correto de cada um dos atributos da classe
-         * de acordo com o valor de posicao passado como parâmetro.
-         */
-        calcularAtributos(posicao);
-
+        //ehPossuida = false;
     }
 
     /**
      *
-     * Métodos Get e Set de cada atributo da classe.
+     * Métodos Getters e Setters de cada atributo da classe.
      */
-    public boolean getEhPossuida() 
+    /*public boolean getEhPossuida() 
     {
         return ehPossuida;
     }
@@ -50,7 +48,7 @@ public class Lote extends Propriedade
     public void setEhPossuida(boolean ehPossuida) 
     {
         this.ehPossuida = ehPossuida;
-    }
+    }*/
 
     public int getPosicao() 
     {
@@ -112,6 +110,18 @@ public class Lote extends Propriedade
         this.precoDeAluguelCasaConstruida = precoDeAluguelCasaConstruida;
     }
 
+    //Métodos
+
+    @Override
+    public void calcularAluguel() 
+    {   
+        /**
+         * Método que chama o método calcularAtributos(), que aloca o valor correto de cada um dos atributos da classe
+         * de acordo com o valor de posicao passado como parâmetro.
+         */
+        calcularAtributos(posicao);
+
+    }
     public void calcularAtributos(int posicao)
     {
 
@@ -124,7 +134,7 @@ public class Lote extends Propriedade
 
         switch (posicao)
         {
-
+    
             case 2:
                 cor = "Marrom";
                 preco = 60;
@@ -301,7 +311,7 @@ public class Lote extends Propriedade
                 precoDeAluguelCasaConstruida = 200;
                 break;
             default:
-                //
+                System.out.println("Erro! Não Temos Lotes Nessa posição " + posicao);
                 break;
         }
 

@@ -1,20 +1,33 @@
-
+/* Autor: 
+ * Maurício Kessongo
+ * 
+ * Descrição da classe: Classe que implementa uma propriedade "Utilidade" no "Espaco". Sub-classe de propriedade; essa classe é responsável por calcular
+ * o "preço de aluguel" especificamente para uma Utilidade para que quando um jogador cair na Utilidade de outro, ele consiga chaar o método calcularAluguel()
+ * e pague o valor de aluguel certo.
+ * Ademais, o cálculo do aluguel das utilidades depende de algumas regras:
+ * -É indispesável saber o valor obtido nos dados;
+ * - É indispensável saber a quantidade de utilidades que um jogador tem;
+ * - Caso tenha uma utilidade, o aluguel é calculado, multiplicando o valor obtido nos dados por 4;
+ * - Caso tenhas duas utilidades, o aluguel é calculado, multiplicando o valor obtido nos dados por 10;
+ */
 public class Utilidade extends Propriedade
 {
-
+    //Atributos
     private int precoDeAluguel;
     private int utilidades; // Variável que deve ter o valor atribuito pelo construtor. Esse valor deve ser passado pela classe Jogador.
     private int posicao;
-    private boolean ehPossuida;
+    //private boolean ehPossuida;
 
+    //Construtor
     public Utilidade(Jogador jogador, int utilidades, int posicao)
     {
         super(jogador);
         this.utilidades = utilidades;
         this.posicao = posicao;
-        ehPossuida = false;
+        //ehPossuida = false;
     }
 
+    //Métodos
     @Override
     public void calcularAluguel() 
     {
@@ -35,14 +48,14 @@ public class Utilidade extends Propriedade
                 precoDeAluguel = valor * 10;
                 break;
             default:
-            //erro
+            System.out.println("Erro! Só existem 2 Utilidades no Jogo");
             break;
         }
     }
 
     /**
      *
-     * Métodos Get e Set de cada atributo da classe.
+     * Métodos Getters e Setters de cada atributo da classe.
      */
 
     public int getPreçoDeAluguel() 
@@ -64,7 +77,7 @@ public class Utilidade extends Propriedade
     {
         this.utilidades = utilidades;
     }
-    public boolean getEhPossuida() 
+    /*public boolean getEhPossuida() 
     {
         return ehPossuida;
     }
@@ -72,7 +85,7 @@ public class Utilidade extends Propriedade
     public void setEhPossuida(boolean ehPossuida) 
     {
         this.ehPossuida = ehPossuida;
-    }
+    }*/
 
     public int getPosicao() 
     {
