@@ -178,19 +178,24 @@ public class PropriedadeTeste
         //IniciaLoteAluguel
         public static void iniciaLoteAluguel(int posicao) 
         {
+            Jogador jogador = new Jogador("Mauro");
             /* SAIDA ESPERADA */
             System.out.printf("Saida esperada: Posicao = %d, Aluguel = %d\n", 2, 2);
 
             /* TESTE */
+        
             Lote lotes = new Lote(jogador, posicao);
+            
 
             System.out.printf("\tPosicao: %d\n", lotes.getPosicao());
-            System.out.printf("\tAluguel: %d\n", lotes.calcularAluguel());
+            lotes.calcularAluguel();
+            System.out.printf("\tAluguel: %d\n", lotes.getPrecoDeAluguel());
         }
         
 
         //iniciaLoteAluguelIncorreto
         public static void iniciaLoteAluguelIncorreto(int posicao) {
+            Jogador jogador = new Jogador("Mauro");
             /* SAIDA ESPERADA */
             System.out.printf("Saida esperada: Posicao = %d, Aluguel = %d\n", 0, -1);
 
@@ -198,12 +203,14 @@ public class PropriedadeTeste
         Lote lotes = new Lote(jogador, posicao);
 
         System.out.printf("\tPosicao: %d\n", lotes.getPosicao());
-        System.out.printf("\tAluguel: %d\n", lotes.calcularAluguel());
+        lotes.calcularAluguel();
+        System.out.printf("\tAluguel: %d\n", lotes.getPrecoDeAluguel());
     }
 
 
     public static void iniciautilidadecorreto(int posicao) 
         {
+            Jogador jogador = new Jogador("Mauro");
             /* SAIDA ESPERADA */
             System.out.printf("Saida esperada: %d, %d\n", 13, 28);
 
@@ -211,12 +218,14 @@ public class PropriedadeTeste
         Utilidade utilidades = new Utilidade(jogador, posicao);
 
         System.out.printf("\tPosicao: %d\n", utilidades.getPosicao());
-        System.out.printf("\tAluguel: %d\n", utilidades.calcularAluguel());
+        utilidades.calcularAluguel();
+        System.out.printf("\tAluguel: %d\n", utilidades.getPrecoDeAluguel());
         }
 
 
         public static void iniciautilidadeincorreto(int posicao) 
         {
+            Jogador jogador = new Jogador("Mauro");
             /* SAIDA ESPERADA */
             System.out.printf("Saida esperada: Posicao = %d, Aluguel = %d\n", 0, -1);
 
@@ -224,12 +233,14 @@ public class PropriedadeTeste
             Utilidade utilidades = new Utilidade(jogador, posicao);
 
             System.out.printf("\tPosicao: %d\n", utilidades.getPosicao());
-            System.out.printf("\tAluguel: %d\n", utilidades.calcularAluguel());
+            utilidades.calcularAluguel();
+            System.out.printf("\tAluguel: %d\n", utilidades.getPrecoDeAluguel());
         }
 
 
         public static void iniciaestacaodemetrocorreto(int posicao) 
         {
+            Jogador jogador = new Jogador("Mauro");
             /* SAIDA ESPERADA */
             System.out.printf("Saida esperada: Posicao = %d, Aluguel = %d\n", 6, 50);
 
@@ -237,19 +248,22 @@ public class PropriedadeTeste
         Estacao_de_Metro estacoesmetro = new Estacao_de_Metro(jogador, posicao);
 
         System.out.printf("\tPosicao: %d\n", estacoesmetro.getPosicao());
-        System.out.printf("\tAluguel: %d\n", estacoesmetro.calcularAluguel());
+        estacoesmetro.calcularAluguel();
+        System.out.printf("\tAluguel: %d\n", estacoesmetro.getPrecoDeAluguel());
         }
 
 
         public static void iniciaestacaodemetroincorreto(int posicao) 
         {
+            Jogador jogador = new Jogador("Mauro");
             /* SAIDA ESPERADA */
             System.out.printf("Saida esperada: %d, %d\n", 0, -1);
 
             /* TESTE */
         Estacao_de_Metro estacoesmetro = new Estacao_de_Metro(jogador, posicao);
         System.out.printf("\tPosicao: %d\n", estacoesmetro.getPosicao());
-        System.out.printf("\tAluguel: %d\n", estacoesmetro.calcularAluguel());
+        estacoesmetro.calcularAluguel();
+        System.out.printf("\tAluguel: %d\n", estacoesmetro.getPrecoDeAluguel());
         }
 
 }
