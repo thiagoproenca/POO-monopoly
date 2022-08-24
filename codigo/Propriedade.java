@@ -10,9 +10,12 @@ public abstract class Propriedade extends Espaco
 {
 
     //Atributos    
-        private int precoDeCompra;
         protected Jogador jogador;
-       
+        private int posicao;
+        private int preco;
+        private int precodeConstrucao;
+        private int precoDeAluguel;
+        private int precoDeAluguelCasaConstruida;
     
         //Construtor
         public Propriedade(Jogador jogador)
@@ -36,15 +39,6 @@ public abstract class Propriedade extends Espaco
          * Métodos Getters e Setters de todos os atributos que a classe Propriedade possui.
          */
     
-        public int getPrecoDeCompra() 
-        {
-            return precoDeCompra;
-        }
-    
-        public void setPrecoDeCompra(int precoDeCompra) 
-        {
-            this.precoDeCompra = precoDeCompra;
-        }
     
         public Jogador getJogador() 
         {
@@ -55,12 +49,57 @@ public abstract class Propriedade extends Espaco
         {
             this.jogador = jogador;
         }
-    
-        /*public void informarComprador()
-        {
-            System.out.println("O proprietário dessa propriedade é: " + jogador);
-        }
-        */
+        public int getPosicao() 
+    {
+        return (this.posicao);
     }
+
+    public void setPosicao(int posicao) 
+    {
+        this.posicao = posicao;
+    }
+
+
+    public int getPreco() 
+    {
+        return (this.preco);
+    }
+
+    public void setPreco(int preco) 
+    {
+        this.preco = preco;
+    }
+
+    public int getPrecoDeAluguel() 
+    {
+        return (this.precoDeAluguel);
+    }
+
+    public void setPrecoDeAluguel(int precoDeAluguel) 
+    {
+        this.precoDeAluguel = precoDeAluguel;
+    }
+
+    public int getPrecodeConstrucao() 
+    {
+        return (this.precodeConstrucao);
+    }
+
+    public void setPrecodeConstrucao(int precodeConstrucao)    
+    {
+        this.precodeConstrucao = precodeConstrucao;
+    }
+
+    public int getPrecoDeAluguelCasaConstruida() 
+    {
+        return (this.precoDeAluguelCasaConstruida);
+    }
+
+    public void setPrecoDeAluguelCasaConstruida(int precoDeAluguelCasaConstruida) 
+    {
+        this.precoDeAluguelCasaConstruida = precoDeAluguelCasaConstruida;
+    }
+    
+}
     
     

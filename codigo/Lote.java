@@ -9,14 +9,7 @@
 public class Lote extends Propriedade
 {
     //Atributos
-    private int posicao;
     private String cor;
-    private int preco;
-    private int precodeConstrucao;
-    private int precoDeAluguel;
-    private int precoDeAluguelCasaConstruida;
-  
-
     //Construtor
     public Lote(Jogador jogador, int posicao)
     {
@@ -33,23 +26,12 @@ public class Lote extends Propriedade
 
         super(jogador);
         calcularAtributos(posicao);
-      
     }
 
     /**
      *
      * Métodos Getters e Setters de cada atributo da classe.
      */
-
-    public int getPosicao() 
-    {
-        return (this.posicao);
-    }
-
-    public void setPosicao(int posicao) 
-    {
-        this.posicao = posicao;
-    }
 
     public String getCor() 
     {
@@ -59,46 +41,6 @@ public class Lote extends Propriedade
     public void setCor(String cor) 
     {
         this.cor = cor;
-    }
-
-    public int getPreco() 
-    {
-        return (this.preco);
-    }
-
-    public void setPreco(int preco) 
-    {
-        this.preco = preco;
-    }
-
-    public int getPrecoDeAluguel() 
-    {
-        return (this.precoDeAluguel);
-    }
-
-    public void setPrecoDeAluguel(int precoDeAluguel) 
-    {
-        this.precoDeAluguel = precoDeAluguel;
-    }
-
-    public int getPrecodeConstrucao() 
-    {
-        return (this.precodeConstrucao);
-    }
-
-    public void setPrecodeConstrucao(int precodeConstrucao)    
-    {
-        this.precodeConstrucao = precodeConstrucao;
-    }
-
-    public int getPrecoDeAluguelCasaConstruida() 
-    {
-        return (this.precoDeAluguelCasaConstruida);
-    }
-
-    public void setPrecoDeAluguelCasaConstruida(int precoDeAluguelCasaConstruida) 
-    {
-        this.precoDeAluguelCasaConstruida = precoDeAluguelCasaConstruida;
     }
 
     //Métodos

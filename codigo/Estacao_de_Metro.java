@@ -14,11 +14,8 @@
 public class Estacao_de_Metro extends Propriedade
 {
 
-    private int precoDeAluguel = 25; //Valor padrão do aluguel de uma EstaçãoDeMetro.
+    protected int precoDeAluguel = 25; //Valor padrão do aluguel de uma EstaçãoDeMetro.
     private int estacoes; //Variável que deve ter o valor atribuido pelo construtor. Esse valor deve ser passado pela classe Jogador.
-    private int posicao;
-    private int preco;
-    
 
     //Construtor
     public Estacao_de_Metro(Jogador jogador, int posicao)
@@ -83,16 +80,6 @@ public class Estacao_de_Metro extends Propriedade
      * Métodos Getters e Setters de cada atributo da classe.
      */
 
-    public int getPrecoDeAluguel() 
-    {
-        return precoDeAluguel;
-    }
-
-    public void setPrecoDeAluguel(int precoDeAluguel) 
-    {
-        this.precoDeAluguel = precoDeAluguel;
-    }
-
     public int getEstacoes() 
     {
         return estacoes;
@@ -101,15 +88,6 @@ public class Estacao_de_Metro extends Propriedade
     public void setEstacoes(int estacoes) 
     {
         this.estacoes = estacoes;
-    }
-    public int getPreco() 
-    {
-        return preco;
-    }
-
-    public void setPreco(int preco) 
-    {
-        this.preco = preco;
     }
 
     public void calcularAtributos(int posicao)

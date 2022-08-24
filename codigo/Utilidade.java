@@ -13,12 +13,7 @@
 public class Utilidade extends Propriedade
 {
     //Atributos
-    private int precoDeAluguel;
     private int utilidades; // Variável que deve ter o valor atribuito pelo construtor. Esse valor deve ser passado pela classe Jogador.
-    private int posicao;
-    private int preco;
-   
-
     //Construtor
     public Utilidade(Jogador jogador, int posicao)
     {
@@ -68,25 +63,6 @@ public class Utilidade extends Propriedade
      *
      * Métodos Getters e Setters de cada atributo da classe.
      */
-    public int getPreco() 
-    {
-        return (this.preco);
-    }
-
-    public void setPreco(int preco) 
-    {
-        this.preco = preco;
-    }
-    public int getPrecoDeAluguel() 
-    {
-        return (this.precoDeAluguel);
-    }
-
-    public void setPrecoDeAluguel(int precoDeAluguel) 
-    {
-        this.precoDeAluguel = precoDeAluguel;
-    }
-
     public int getUtilidades() 
     {
         return (this.utilidades);
@@ -95,16 +71,6 @@ public class Utilidade extends Propriedade
     public void setUtilidades(int utilidades) 
     {
         this.utilidades = utilidades;
-    }
-
-    public int getPosicao() 
-    {
-        return (this.posicao);
-    }
-
-    public void setPosicao(int posicao) 
-    {
-        this.posicao = posicao;
     }
 
     public void calcularAtributos(int posicao)
