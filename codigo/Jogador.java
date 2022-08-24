@@ -43,7 +43,16 @@ public class Jogador{
     }
 
     public int getUltimoLancamento() {
-        return lancamentos[2];
+        switch (lancamentos.length){
+            case 0:
+                return 0;
+            case 1:
+                return lancamentos[0];
+            case 2:
+                return lancamentos[1];
+            default:
+                return lancamentos[2];
+        }
     }
 
     public int getPosicao() {
@@ -64,7 +73,15 @@ public class Jogador{
 
     // métodos
     public boolean temDuplas() {
-        return lancamentos[0] == lancamentos[1] || lancamentos[0] == lancamentos[2] || lancamentos[1] == lancamentos[2];
+        switch (lancamentos.length){
+            case 0:
+            case 1:
+                return false;
+            case 2:
+                return lancamentos[0] == lancamentos[1];
+            default:
+                return lancamentos[0] == lancamentos[1] || lancamentos[0] == lancamentos[2] || lancamentos[1] == lancamentos[2];
+        }
     }
 
     public int Num_Estacoes__de_Metro(){
