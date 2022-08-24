@@ -11,11 +11,11 @@ public abstract class Propriedade extends Espaco
 
     //Atributos    
         protected Jogador jogador;
-        private int posicao;
-        private int preco;
-        private int precodeConstrucao;
-        private int precoDeAluguel;
-        private int precoDeAluguelCasaConstruida;
+        protected int posicao;
+        protected int preco;
+        protected int precodeConstrucao;
+        protected int precoDeAluguel;
+        protected int precoDeAluguelCasaConstruida;
     
         //Construtor
         public Propriedade(Jogador jogador)

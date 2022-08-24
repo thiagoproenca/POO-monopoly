@@ -11,19 +11,11 @@ public class PropriedadeTeste
      * A classe Propriedade não é testada de forma direta. Ela é testada por meio das suas subclasses.
      */
     public static void main(String[] args)
-     {
+    {
         
     
         //Método Da classe TESTATDA
-        public static void classeTestada(String nomeClasse)
-        {
-            System.out.printf("\nClasse testada: %s\n", nomeClasse);
-        }
-        //Método que mostra a ordem dos testes
-        public static void ExecutarTeste(String nomeTeste, int numeroTeste) 
-        {
-            System.out.printf("\nTeste %d - %s\n", numeroTeste, nomeTeste);
-        }
+        
 
         /* TESTES - Lote */
 
@@ -37,22 +29,7 @@ public class PropriedadeTeste
         * 
         * RETORNO: constroi um objeto do tipo 'Lote' para ser utilizado como 'Propriedade' em 'Espaçco'.
         */
-        public static void iniciaLoteAluguel(int posicao) 
-        {
-            /* SAIDA ESPERADA */
-            System.out.printf("Saida esperada: %d, %s\n", 2, 2);
-
-            /* TESTE */
-            Lote lotes = new Lote(jogador, posicao);
-
-            System.out.printf("\tPosicao: %d\n", lotes.getPosicao());
-            System.out.printf("\tAluguel: %d\n", lotes.calcularAluguel());
-        }
-        classeTestada("Lote");
-
-        //teste 1
-        ExecutarTeste("iniciaLoteAluguel", 1);
-        iniciaLoteAluguel(2);
+        
 
     /* TESTES - Lote */
 
@@ -68,17 +45,11 @@ public class PropriedadeTeste
         * RETORNO: constroi um objeto do tipo 'Lote' para ser utilizado como 'Propriedade' em 'Espaçco'.
         */
 
-        public static void iniciaLoteAluguelIncorreto(int posicao) {
-             /* SAIDA ESPERADA */
-             System.out.printf("Saida esperada: %d, %d\n", 0, -1);
-
-             /* TESTE */
-            Lote lotes = new Lote(jogador, posicao);
-
-            System.out.printf("\tPosicao: %d\n", lotes.getPosicao());
-            System.out.printf("\tAluguel: %d\n", lotes.calcularAluguel());
-        }
-
+        
+        //teste 1
+        classeTestada("Lote");
+        ExecutarTeste("iniciaLoteAluguel", 1);
+        iniciaLoteAluguel(2);
 
         //teste 2
         classeTestada("Lote");
@@ -103,23 +74,15 @@ public class PropriedadeTeste
         * RETORNO: constroi um objeto do tipo 'Utilidade' para ser utilizado como 'Propriedade' em 'Espaçco'.
         */
 
-        public static void iniciautilidadecorreto(int posicao) 
-        {
-            /* SAIDA ESPERADA */
-            System.out.printf("Saida esperada: %d, %d\n", 13, 28);
-
-            /* TESTE */
-        Utilidade utilidades = new Utilidade(jogador, posicao);
-
-        System.out.printf("\tPosicao: %d\n", utilidades.getPosicao());
-        System.out.printf("\tAluguel: %d\n", utilidades.calcularAluguel());
-        }
+        
         //teste 3
         ExecutarTeste("iniciautilidadecorreto", 3);
         iniciautilidadecorreto(13);
         classeTestada("Utilidade");
 
 
+        
+        
 
         //TESTE 4
          /* TESTES - Utilidade */
@@ -137,17 +100,7 @@ public class PropriedadeTeste
         * RETORNO: constroi um objeto do tipo 'Utilidade' para ser utilizado como 'Propriedade' em 'Espaçco'.
         */
 
-        public static void iniciautilidadecorreto(int posicao) 
-        {
-            /* SAIDA ESPERADA */
-            System.out.printf("Saida esperada: %d, %d\n", 13, 28);
-
-            /* TESTE */
-            Utilidade utilidades = new Utilidade(jogador, posicao);
-
-            System.out.printf("\tPosicao: %d\n", utilidades.getPosicao());
-            System.out.printf("\tAluguel: %d\n", utilidades.calcularAluguel());
-        }
+        
         //teste 4
         ExecutarTeste("iniciautilidadecorreto", 4);
         iniciautilidadecorreto(13);
@@ -176,20 +129,10 @@ public class PropriedadeTeste
         * RETORNO: constroi um objeto do tipo 'Estacao_de_Metro' para ser utilizado como 'Propriedade' em 'Espaçco'.
         */
 
-        public static void iniciaestacaodemetrocorreto(int posicao) 
-        {
-            /* SAIDA ESPERADA */
-            System.out.printf("Saida esperada: %d, %d\n", 6, 50);
-
-            /* TESTE */
-        Estacao_de_Metro estacoesmetro = new Estacao_de_Metro(jogador, posicao);
-
-        System.out.printf("\tPosicao: %d\n", estacoesmetro.getPosicao());
-        System.out.printf("\tAluguel: %d\n", estacoesmetro.calcularAluguel());
-        }
+        
         //teste 5
         ExecutarTeste("iniciaestacaodemetrocorreto", 5);
-        iniciaEstacao_de_Metrocorreto(6);
+        iniciaestacaodemetrocorreto(6);
         classeTestada("Estacao_de_Metro");
 
         //TESTE 6
@@ -210,6 +153,94 @@ public class PropriedadeTeste
         * RETORNO: constroi um objeto do tipo 'Estacao_de_Metro' para ser utilizado como 'Propriedade' em 'Espaçco'.
         */
 
+        
+        //teste 6
+        ExecutarTeste("iniciaestacaodemetroincorreto", 6);
+        iniciaestacaodemetroincorreto(6);
+        classeTestada("Estacao_de_Metro");
+    }
+
+
+    
+
+    //Classe Testada
+    public static void classeTestada(String nomeClasse)
+        {
+            System.out.printf("\nClasse testada: %s\n", nomeClasse);
+        }
+        //Executar
+        public static void ExecutarTeste(String nomeTeste, int numeroTeste) 
+        {
+            System.out.printf("\nTeste %d - %s\n", numeroTeste, nomeTeste);
+        }
+
+
+        //IniciaLoteAluguel
+        public static void iniciaLoteAluguel(int posicao) 
+        {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: Posicao = %d, Aluguel = %d\n", 2, 2);
+
+            /* TESTE */
+            Lote lotes = new Lote(jogador, posicao);
+
+            System.out.printf("\tPosicao: %d\n", lotes.getPosicao());
+            System.out.printf("\tAluguel: %d\n", lotes.calcularAluguel());
+        }
+        
+
+        //iniciaLoteAluguelIncorreto
+        public static void iniciaLoteAluguelIncorreto(int posicao) {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: Posicao = %d, Aluguel = %d\n", 0, -1);
+
+            /* TESTE */
+        Lote lotes = new Lote(jogador, posicao);
+
+        System.out.printf("\tPosicao: %d\n", lotes.getPosicao());
+        System.out.printf("\tAluguel: %d\n", lotes.calcularAluguel());
+    }
+
+
+    public static void iniciautilidadecorreto(int posicao) 
+        {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: %d, %d\n", 13, 28);
+
+            /* TESTE */
+        Utilidade utilidades = new Utilidade(jogador, posicao);
+
+        System.out.printf("\tPosicao: %d\n", utilidades.getPosicao());
+        System.out.printf("\tAluguel: %d\n", utilidades.calcularAluguel());
+        }
+
+
+        public static void iniciautilidadeincorreto(int posicao) 
+        {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: Posicao = %d, Aluguel = %d\n", 0, -1);
+
+            /* TESTE */
+            Utilidade utilidades = new Utilidade(jogador, posicao);
+
+            System.out.printf("\tPosicao: %d\n", utilidades.getPosicao());
+            System.out.printf("\tAluguel: %d\n", utilidades.calcularAluguel());
+        }
+
+
+        public static void iniciaestacaodemetrocorreto(int posicao) 
+        {
+            /* SAIDA ESPERADA */
+            System.out.printf("Saida esperada: Posicao = %d, Aluguel = %d\n", 6, 50);
+
+            /* TESTE */
+        Estacao_de_Metro estacoesmetro = new Estacao_de_Metro(jogador, posicao);
+
+        System.out.printf("\tPosicao: %d\n", estacoesmetro.getPosicao());
+        System.out.printf("\tAluguel: %d\n", estacoesmetro.calcularAluguel());
+        }
+
+
         public static void iniciaestacaodemetroincorreto(int posicao) 
         {
             /* SAIDA ESPERADA */
@@ -220,10 +251,5 @@ public class PropriedadeTeste
         System.out.printf("\tPosicao: %d\n", estacoesmetro.getPosicao());
         System.out.printf("\tAluguel: %d\n", estacoesmetro.calcularAluguel());
         }
-        //teste 6
-        ExecutarTeste("iniciaestacaodemetroincorreto", 6);
-        iniciaEstacao_de_Metrocorreto(6);
-        classeTestada("Estacao_de_Metro");
-    }
 
 }
