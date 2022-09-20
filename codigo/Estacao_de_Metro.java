@@ -21,7 +21,8 @@ public class Estacao_de_Metro extends Propriedade
     //Construtor
     public Estacao_de_Metro(Jogador jogador, int posicao)
     {
-
+        //se passar um tipo que nao seja jogador e posicao, acho que podemos capturar e propagar essas excecoes e tratar todas entrada invalidas de uma unica vez em classes mais gerais
+         //lancar um throw em calcularAtribtos e em calcularAluguel e tratar no construtor de cada classe filha
         super(jogador);
         calcularAtributos(posicao);
     
@@ -39,7 +40,7 @@ public class Estacao_de_Metro extends Propriedade
         if(posicao == 6 || posicao == 16 || posicao == 26 || posicao ==36)
         {
             estacoes = jogador.Num_Estacoes__de_Metro();
-            if(precoDeAluguel < 200 && estacoes <= 4) 
+            if(precoDeAluguel < 200 && estacoes <= 4) //esse if statement eh desnecessario e redundante, se o numero de estacoes form maior do que 4, cair[a no default e podemos capturar e lancar. tratar a excecao no default]
             {
 
                 switch(estacoes)
@@ -58,20 +59,23 @@ public class Estacao_de_Metro extends Propriedade
                         precoDeAluguel *= 8;
                         break;
                     default:
+                        //capturar e lancar a excecao de que so temos no maximo 4 estacoes de metro no Monopoly/ excedeu o numero de estacoes de metro
+                         //nao usaremos calcularAtributos
                         calcularAtributos(posicao);
                         break;
                 }
             }
-            if(estacoes > 4)
+            else if(estacoes > 4)
             {
-                
+                //capturar e lancar a excecao de que so temos no maximo 4 estacoes de metro no Monopoly / excedeu o numero de estacoes de metro
+                //nao usaremos calcularAtributos
                 calcularAtributos(posicao);
 
             }
         }
         else
         {
-            calcularAtributos(posicao); 
+            calcularAtributos(posicao); //calcularAtributos lanca uma excecao sobre a posicao fornecida nao ser de uma estacao de metro
         }
 
     }
@@ -118,6 +122,7 @@ public class Estacao_de_Metro extends Propriedade
                 setPosicao(posicao);
             break;
             default:
+            //capturar / tratar exce'ao aqui, caso a posicao fornecida nao seja a de uma estacao de metro, disparar essa excecao
                 setPrecoDeAluguel(-1);    
                 setPosicao(0);
                 break;

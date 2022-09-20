@@ -19,6 +19,8 @@ public class Utilidade extends Propriedade
     //Construtor
     public Utilidade(Jogador jogador, int posicao)
     {
+        //se passar um tipo que nao seja jogador e posicao, acho que podemos capturar e propagar essas excecoes e tratar todas entrada invalidas de uma unica vez em classes mais gerais
+         //lancar um throw em calcularAtribtos e em calcularAluguel e tratar no construtor de cada classe filha
         super(jogador);
         calcularAtributos(posicao);
     
@@ -49,6 +51,8 @@ public class Utilidade extends Propriedade
                     precoDeAluguel = valor * 10;
                     break;
                 default:
+                 //capturar e lancar a excecao de que so temos no maximo 2 utilidades  no Monopoly/ excedeu o numero de utilidades
+                //nao usaremos calcularAtributos
                     setPrecoDeAluguel(-1);
                     System.out.println("Erro! Só existem 2 Utilidades no Jogo");
                     jogador.setPosicao(posicao);
@@ -57,6 +61,7 @@ public class Utilidade extends Propriedade
         }
         else
         {
+            //calcularAtributos lanca uma excecao sobre a posicao fornecida nao ser de uma utilidade
             calcularAtributos(posicao);
         }
     }
@@ -91,6 +96,7 @@ public class Utilidade extends Propriedade
                 setPosicao(posicao);
             break;
             default:
+             //capturar / tratar exce'ao aqui, caso a posicao fornecida nao seja a de uma utilidade, disparar essa excecao
                 setPrecoDeAluguel(-1);
                 setPosicao(0);
                 break;

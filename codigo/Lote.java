@@ -16,7 +16,8 @@ public class Lote extends Propriedade
     //Construtor
     public Lote(Jogador jogador, int posicao)
     {
-
+        //se passar um tipo que nao seja jogador e posicao, acho que podemos capturar e propagar essas excecoes e tratar todas entrada invalidas de uma unica vez em classes mais gerais
+        //lancar um throw em calcularAtribtos e em calcularAluguel e tratar no construtor de cada classe filha
         /**
          * Construtor da classe Lote. Recebe dois parâmetros, um do tipo referência Jogador e outro do tipo primitivo
          * inteiro. A função super() chama o construtor da superclasse Propriedade e passa como parâmetro uma instância
@@ -55,6 +56,8 @@ public class Lote extends Propriedade
          * Método que chama o método calcularAtributos(), que aloca o valor correto de cada um dos atributos da classe
          * de acordo com o valor de posicao passado como parâmetro.
          */
+
+        //posso capturar a excecao em calcularAtributos e tratar a excecao em calcularAluguel/
         calcularAtributos(posicao);
 
     }
@@ -272,6 +275,7 @@ public class Lote extends Propriedade
                 setPosicao(posicao);
                 break;
             default:
+            //capturar / tratar exce'ao aqui, caso a posicao fornecida nao seja a de um Lote, disparar essa excecao
                 setCor("Sem Cor");
                 setPreco(-1);
                 setPrecodeConstrucao(-1);
