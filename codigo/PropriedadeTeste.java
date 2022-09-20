@@ -148,7 +148,9 @@ public class PropriedadeTeste
         * os atributos 'posicao' e 'precodeAluguel' devem ser '0' e '-1', respectivamente.
         * 
         * METODO TESTADO: contrutor - 'Estacao_de_Metro(jogador, posicao);'
+        
         * para ser iniciado, é passado uma posicao (que sera a sua posicao em 'Tabuleiro') e a referencia ao jogador;
+
         * 
         * RETORNO: constroi um objeto do tipo 'Estacao_de_Metro' para ser utilizado como 'Propriedade' em 'Espaçco'.
         */

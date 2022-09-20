@@ -2,8 +2,11 @@
  * Maurício Kessongo
  * 
  * Descrição da classe: Classe que implementa uma propriedade "Lote" no "Espaco". Sub-classe de propriedade; essa classe é responsável por calcular
+ * 
  * o "preço de Aluguel" especificamente para um Lote para que quando um jogador cair no lote de outro, ele consiga chamar o método calcularAluguel()
+ * 
  * e pague o valor de aluguel certo, conforme está na tabela 1 que nos foi dada. Temos também o métodos calcularAtributos que recebe como parámetro uma
+ * 
  * variável "posicao" e por meio dessa aloca o valor correto de cada um dos atributos da classe de acordo com o valor de posicao passado como parâmetro.
  */
 public class Lote extends Propriedade

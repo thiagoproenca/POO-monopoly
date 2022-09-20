@@ -4,6 +4,7 @@
  * Descrição da classe: Classe abstrata que representa uma propriedade no "Espaco"; sub-classe da classe "Espaco". Essa é uma classe genérica que contém
  * um método abstrato "calcularAluguel()" que não é implementado nessa classe, mas sim, nas suas sub-classes e esta implementação depende do tipo de propriedade. 
  * Logo, a classe "Propriedade" não tem responsabilidade alguma. Essa responsabilidade é delegada para as sub-classes.
+ * 
  */
 
 public abstract class Propriedade extends Espaco 

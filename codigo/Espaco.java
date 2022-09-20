@@ -1,3 +1,11 @@
+/* Autor: 
+ * Thiago Proença
+ * 
+ * Descrição da classe: 
+ * Classe que representa um espaco no "Tabuleiro"; classe generica que nao tem responsabilidade alguma.
+ * As classes que possuem responsabilidades no "Tabuleiro" sao as sub-classes de "Espaco".
+ */
+
 public class Espaco {
     // atributos
     protected int posicao;
@@ -22,6 +30,6 @@ public class Espaco {
         this.nome = nome;
     }
 
-    //metodos
+    //metodos do espaco
     
 }

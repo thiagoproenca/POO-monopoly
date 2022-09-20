@@ -8,7 +8,9 @@
  * -É indispesável saber o valor obtido nos dados;
  * - É indispensável saber a quantidade de utilidades que um jogador tem;
  * - Caso tenha uma utilidade, o aluguel é calculado, multiplicando o valor obtido nos dados por 4;
+ * 
  * - Caso tenhas duas utilidades, o aluguel é calculado, multiplicando o valor obtido nos dados por 10;
+ * 
  */
 public class Utilidade extends Propriedade
 {

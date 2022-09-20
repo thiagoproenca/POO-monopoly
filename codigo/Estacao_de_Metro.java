@@ -9,6 +9,7 @@
  * - o aluguel dobra a cada nova estação adquirida pelo mesmo jogador
  * - Depende do número de estações adquiridas pelo mesmo jogador
  * - O valor de aluguel varia de $25 até $200
+ * 
   */
 
 public class Estacao_de_Metro extends Propriedade
