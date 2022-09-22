@@ -2,7 +2,7 @@ public class CartaVaParaCadeia extends Carta {
     // atributos
     
     // construtor
-    public CartaVaParaCadeia(String tipoCarta, int numCarta) {
+    public CartaVaParaCadeia(int tipoCarta, int numCarta) {
         // inicializa a carta como do tipo cofre ou sorte
         inicializaCarta(tipoCarta, numCarta);
     }
@@ -10,9 +10,9 @@ public class CartaVaParaCadeia extends Carta {
     // getters e setters
 
     // metodos
-    private void inicializaCarta(String tipoCarta, int numCarta) {
+    private void inicializaCarta(int tipoCarta, int numCarta) {
         // inicializa a carta como cofre
-        if(tipoCarta == "COFRE") {
+        if(tipoCarta == 0) {
             switch(numCarta) {
                 case 16:
                     setEspecificacao(EnumCarta.COFRE_16.getDescricao());
@@ -21,7 +21,7 @@ public class CartaVaParaCadeia extends Carta {
         }
         
         // inicializa a carta como sorte
-        else if(tipoCarta == "SORTE") {
+        else if(tipoCarta == 1) {
             switch(numCarta) {
                 case 16:
                     setEspecificacao(EnumCarta.SORTE_16.getDescricao());

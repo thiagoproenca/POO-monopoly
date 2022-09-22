@@ -4,46 +4,46 @@ public class CartaTeste {
         classeTestada("CartaDeDinheiro");
 
         // teste 1
-        ExecutarTeste("testaCartaValida", 1);
+        ExecutarTeste("testaCartaDinheiroValida", 1);
         testaCartaDinheiroValida("COFRE", 8);
 
         // teste 2s
-        ExecutarTeste("testarCartaInvalida", 2);
+        ExecutarTeste("testarCartaDinheiroInvalida", 2);
         testarCartaDinheiroInvalida("ola", 50);
         
         // teste 3s
-        ExecutarTeste("testarCartaValidaSorte", 2);
+        ExecutarTeste("testarCartaDinheiroValidaSorte", 3);
         testarCartaDinheiroValidaSorte("SORTE", 10);
 
         /* CartaDeMovimento */
         classeTestada("CartaDeMovimento");
 
         // teste 1
-        ExecutarTeste("testaCartaValidaCofre", 1);
+        ExecutarTeste("testaCartaMovimentoValidaCofre", 1);
         testaCartaValidaMovimentoCofre("COFRE", 2);
  
         // teste 2
-        ExecutarTeste("testaCartaValidaSorte", 2);
+        ExecutarTeste("testaCartaMovimentoValidaSorte", 2);
         testaCartaValidaMovimentoSorte("SORTE", 4);
          
         // teste 3
-        ExecutarTeste("testaCartaInvalida", 3);
+        ExecutarTeste("testaCartaMovimentoInvalida", 3);
         testaCartaMovimentoInvalida("surto", -1);
 
         /* CartaVaParaCadeia */
         classeTestada("CartaVaParaCadeia");
 
         // teste 1
-        ExecutarTeste("testaCartaValidaCofre", 1);
+        ExecutarTeste("testaCartaValidaCadeiaCofre", 1);
         testaCartaValidaCadeiaCofre("COFRE", 16);
 
         // teste 2
-        ExecutarTeste("testaCartaValidaSorte", 2);
+        ExecutarTeste("testaCartaValidaCadeiaSorte", 2);
         testaCartaValidaCadeiaSorte("SORTE", 16);
         
         // teste 3
-        ExecutarTeste("testaCartaInvalida", 3);
-        testaCartaValidaCadeiaSorte("AZAR", 16);
+        ExecutarTeste("testaCartaCadeiaInvalida", 3);
+        testaCartaCadeiaInvalida("AZAR", 16);
     }
 
     // nome da classe que vai ser testada
@@ -60,7 +60,7 @@ public class CartaTeste {
 
         public static void testaCartaDinheiroValida(String tipo, int numcarta) {
             //saída esperada
-            System.out.println("Saída esperada: Seu seguro de vida alcança seu estágio mais avançado");
+            System.out.println("Saída esperada: Seu seguro de vida alcança seu estágio mais avançado (colete $100)");
             
             CartaDeDinheiro c1 = new CartaDeDinheiro(tipo, numcarta);
             
@@ -76,7 +76,7 @@ public class CartaTeste {
         
         public static void testarCartaDinheiroValidaSorte(String tipo, int numcarta){
             //saida esperada
-            System.out.println("Saida esperada: Taxa de atendimento médico (pague $50 ");
+            System.out.println("Saida esperada: Taxa de atendimento médico (pague $50)");
             CartaDeDinheiro c3 = new CartaDeDinheiro(tipo, numcarta);
             //Saida do programa:
             System.out.printf("%s", c3.getEspecificacao());

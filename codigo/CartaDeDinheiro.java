@@ -3,7 +3,7 @@ public class CartaDeDinheiro extends Carta {
     private int taxa;
     
     // construtor
-    public CartaDeDinheiro(String tipoCarta, int numCarta) {
+    public CartaDeDinheiro(int tipoCarta, int numCarta) {
         // inicializa a carta como do tipo cofre ou sorte
         inicializaCarta(tipoCarta, numCarta);
     }
@@ -18,11 +18,11 @@ public class CartaDeDinheiro extends Carta {
     }
 
     // metodos
-    private void inicializaCarta(String tipoCarta, int numCarta) {
+    private void inicializaCarta(int tipoCarta, int numCarta) {
         // metodo interno
         
         // inicializa a carta como cofre
-        if(tipoCarta == "COFRE") {
+        if(tipoCarta == 0) {
             switch(numCarta) {
                 case 8:
                     setEspecificacao(EnumCarta.COFRE_08.getDescricao());
@@ -60,7 +60,7 @@ public class CartaDeDinheiro extends Carta {
         }
         
         // inicializa a carta como sorte
-        else if(tipoCarta == "SORTE") {
+        else if(tipoCarta == 1) {
             switch(numCarta) {
                 case 8:
                     setEspecificacao(EnumCarta.SORTE_08.getDescricao());
