@@ -15,6 +15,9 @@ public class DeckDeCartas {
 
     // construtores
     public DeckDeCartas(int tipoDeDeck) {
+        // inicializa o deck
+        this.deck = new ArrayList<>();
+        
         for(int i=1; i<=16; i++) {
             // carta de movimento
             if(i < 8) {
