@@ -66,5 +66,6 @@ public class Gerenciador {
 
         // inicia jogo
         jogo.Jogar();
+        
     }
 }

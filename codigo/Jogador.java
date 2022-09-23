@@ -10,7 +10,10 @@ public class Jogador{
     private boolean estarNaCadeia;
     private int posicao;
     private int turnosNaCadeia;
-    private boolean monopolio;
+    private int monopolio;
+    private boolean hotelConstruido;
+    private boolean podeConstruirHotel;
+
 
     // construtor
     public Jogador(String nome){
@@ -19,7 +22,9 @@ public class Jogador{
         this.lancamentos = new int[3];
         this.estarNaCadeia = false;
         this.turnosNaCadeia = 0;
-        this.monopolio = false;
+        this.monopolio = 0;
+        this.hotelConstruido = false;
+        this.podeConstruirHotel = false;
     }
 
     // getters e setters
@@ -31,11 +36,23 @@ public class Jogador{
         return saldo;
     }
 
-    public void setMonopolio(boolean monopolio){
+    public void setHotelConstruido(boolean hotel){
+        this.hotelConstruido = hotel;
+    }
+
+    public boolean getHotelConstruido(){
+        return this.hotelConstruido;
+    }
+
+    public boolean getPodeConstruirHotel(){
+        return this.podeConstruirHotel;
+    }
+
+    public void setMonopolio(int monopolio){
         this.monopolio = monopolio;
     }
 
-    public boolean getMonopolio(){
+    public int getMonopolio(){
         return this.monopolio;
     }
 
@@ -157,6 +174,7 @@ public class Jogador{
     public boolean monopolio(String cor){
         int i = 0;
         int count = 0;
+        int countHotel = 0;
         for(i=0; i<this.propriedades.size(); i++){
             if(propriedades.get(i) instanceof Lote){
                 Espaco espaco = propriedades.get(i);
@@ -169,56 +187,161 @@ public class Jogador{
         switch(cor){
             case "Marrom":{
                 if(count == 2){ 
-                    this.monopolio = true;
+                    this.monopolio++;
+
+                    for(i=0;i<this.propriedades.size();i++){
+                        if(this.propriedades.get(i) instanceof Lote){
+                            Espaco espaco = propriedades.get(i);
+                            if(((Lote)espaco).getCor() == "Marrom" && ((Lote)espaco).getCasaConstruida()){
+                                countHotel++;
+                            }
+                        }
+                    }
+
+                    if(countHotel == 2){
+                        this.podeConstruirHotel = true;
+                    }
+
                     return true;
                 }
                 else return false;
             }
             case "Azul Claro":{
                 if(count == 3){ 
-                    this.monopolio = true;
+                    this.monopolio++;
+
+                    for(i=0;i<this.propriedades.size();i++){
+                        if(this.propriedades.get(i) instanceof Lote){
+                            Espaco espaco = propriedades.get(i);
+                            if(((Lote)espaco).getCor() == "Azul Claro" && ((Lote)espaco).getCasaConstruida()){
+                                countHotel++;
+                            }
+                        }
+                    }
+
+                    if(countHotel == 2){
+                        this.podeConstruirHotel = true;
+                    }
                     return true;
                 }
                 else return false;
             }
             case "Rosa":{
                 if(count == 3){ 
-                    this.monopolio = true;
+                    this.monopolio++;
+
+                    for(i=0;i<this.propriedades.size();i++){
+                        if(this.propriedades.get(i) instanceof Lote){
+                            Espaco espaco = propriedades.get(i);
+                            if(((Lote)espaco).getCor() == "Rosa" && ((Lote)espaco).getCasaConstruida()){
+                                countHotel++;
+                            }
+                        }
+                    }
+
+                    if(countHotel == 2){
+                        this.podeConstruirHotel = true;
+                    }
                     return true;
                 }
                 else return false;
             }
             case "Laranja":{
                 if(count == 3){ 
-                    this.monopolio = true;
+                    this.monopolio++;
+
+                    for(i=0;i<this.propriedades.size();i++){
+                        if(this.propriedades.get(i) instanceof Lote){
+                            Espaco espaco = propriedades.get(i);
+                            if(((Lote)espaco).getCor() == "Laranja" && ((Lote)espaco).getCasaConstruida()){
+                                countHotel++;
+                            }
+                        }
+                    }
+
+                    if(countHotel == 2){
+                        this.podeConstruirHotel = true;
+                    }
                     return true;
                 }
                 else return false;
             }
             case "Vermelho":{
                 if(count == 3){ 
-                    this.monopolio = true;
+                    this.monopolio++;
+
+                    for(i=0;i<this.propriedades.size();i++){
+                        if(this.propriedades.get(i) instanceof Lote){
+                            Espaco espaco = propriedades.get(i);
+                            if(((Lote)espaco).getCor() == "Vermelho" && ((Lote)espaco).getCasaConstruida()){
+                                countHotel++;
+                            }
+                        }
+                    }
+
+                    if(countHotel == 2){
+                        this.podeConstruirHotel = true;
+                    }
                     return true;
                 }
                 else return false;
             }
             case "Amarelo":{
                 if(count == 3){ 
-                    this.monopolio = true;
+                    this.monopolio++;
+
+                    for(i=0;i<this.propriedades.size();i++){
+                        if(this.propriedades.get(i) instanceof Lote){
+                            Espaco espaco = propriedades.get(i);
+                            if(((Lote)espaco).getCor() == "Amarelo" && ((Lote)espaco).getCasaConstruida()){
+                                countHotel++;
+                            }
+                        }
+                    }
+
+                    if(countHotel == 2){
+                        this.podeConstruirHotel = true;
+                    }
                     return true;
                 }
                 else return false;
             }
             case "Verde":{
                 if(count == 3){ 
-                    this.monopolio = true;
+                    this.monopolio++;
+
+                    for(i=0;i<this.propriedades.size();i++){
+                        if(this.propriedades.get(i) instanceof Lote){
+                            Espaco espaco = propriedades.get(i);
+                            if(((Lote)espaco).getCor() == "Verde" && ((Lote)espaco).getCasaConstruida()){
+                                countHotel++;
+                            }
+                        }
+                    }
+
+                    if(countHotel == 2){
+                        this.podeConstruirHotel = true;
+                    }
                     return true;
                 }
                 else return false;
             }
             case "Azul":{
                 if(count == 2){ 
-                    this.monopolio = true;
+                    this.monopolio++;
+
+                    for(i=0;i<this.propriedades.size();i++){
+                        if(this.propriedades.get(i) instanceof Lote){
+                            Espaco espaco = propriedades.get(i);
+                            if(((Lote)espaco).getCor() == "Azul" && ((Lote)espaco).getCasaConstruida()){
+                                countHotel++;
+                            }
+                        }
+                    }
+
+                    if(countHotel == 2){
+                        this.podeConstruirHotel = true;
+                    }
                     return true;
                 }
                 else return false;

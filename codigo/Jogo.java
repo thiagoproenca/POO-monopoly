@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Jogo {
     // atibutos
@@ -136,7 +137,7 @@ public class Jogo {
         // paga o jogador por ter dado a volta
         Espaco espaco = tabuleiro.getEspaco(1);
         ((PontoDePartida)espaco).deuAVolta();
-
+        
         banco.pagarTaxa(jogador, ((PontoDePartida)espaco).receberTaxa());
         System.out.println(jogador.getNome() + " completou uma volta!\n\tO jogador recebeu $200!");
     }
@@ -145,6 +146,7 @@ public class Jogo {
      * movimenta o jogador no inicio de cada turno
      */
     private void movimentaJogador(int rodada, int dado1, int dado2) {
+
         // guarda a posicao antes do movimento
         int posicaoAnterior = getTurnoJogador(rodada).getPosicao();
 
@@ -170,6 +172,10 @@ public class Jogo {
             dado2 = getDado(1).getResultado();
             // mostrar os valores dos dados
             System.out.printf("%s tirou %d e %d nos dados.\n", getTurnoJogador(rodada).getNome(), dado1, dado2);
+
+
+            // guardando valor de dados
+            getTurnoJogador(rodada).setLancamentos(dado1 + dado2);
 
             // move o jogador
             tabuleiro.moveJogador(getTurnoJogador(rodada), (dado1 + dado2));
@@ -213,7 +219,7 @@ public class Jogo {
         // propriedade sem dono
         if(lote.getJogador() == null) {
             // informacoes sobre a propriedade
-            System.out.println(lote.getNome()); // nome da propriedade
+            System.out.println(lote.getCor()+" | "+lote.getNome()); // nome da propriedade
             System.out.println("Essa propriedade não possui um proprietário.");
             System.out.println();
 
@@ -235,6 +241,7 @@ public class Jogo {
                     // tem saldo suficiente
                     if(jogador.getSaldo() > lote.getPreco()) {
                         banco.pagarTaxa(jogador, -(lote.getPreco()) );
+                        lote.calcularAluguel();
                         jogador.setPropriedade(lote);
                         lote.setJogador(jogador);
 
@@ -278,6 +285,7 @@ public class Jogo {
                 // nao comprar propriedade
                 else if (opc == 3) {
                     System.out.println("Ok! Continuando o jogo.");
+                    return;
                 }
 
                 // opcao invalida
@@ -291,12 +299,14 @@ public class Jogo {
         // propriedade com dono
         else if(lote.getJogador() != jogador) {
             // informacoes sobre a propriedade
-            System.out.println(lote.getNome()); // nome da propriedade
+            System.out.println(lote.getCor()+" | "+lote.getNome()); // nome da propriedade
             System.out.println("Propriedade de: "+lote.getJogador().getNome());
             System.out.println();
 
+            lote.calcularAluguel();
+
             // verifica se tem monopolio; caso tenha, pagara x2 o preco do aluguel
-            if(lote.getJogador().getMonopolio()) {
+            if(lote.getJogador().getMonopolio() == 1) {
                 // jogador pagou o aluguel ao dono da propriedade
                 if(banco.pagarTaxa(jogador, -(lote.getPrecoDeAluguel() * 2))) {
                     System.out.println(jogador.getNome()+" pagou $"+(lote.getPrecoDeAluguel()*2)+" para "+lote.getJogador().getNome());
@@ -315,7 +325,14 @@ public class Jogo {
             // valor padrao do aluguel
             else {
                 // jogador pagou o aluguel ao dono da propriedade
-                if(banco.pagarTaxa(jogador, lote.getJogador(), (lote.getPrecoDeAluguel()))) {
+                if(lote.getJogador().isEstarNaCadeia()){
+                    if(!banco.pagarTaxa(jogador, -lote.getPrecoDeAluguel())){
+                        jogadores.remove(jogador);
+                        setQuantidadeJogadores(getQuantidadeJogadores() - 1);
+                    }
+                }
+
+                else if(banco.pagarTaxa(jogador, lote.getJogador(), (lote.getPrecoDeAluguel()))) {
                     System.out.println(jogador.getNome()+" pagou $"+(lote.getPrecoDeAluguel())+" para "+lote.getJogador().getNome());
                 }
 
@@ -349,6 +366,11 @@ public class Jogo {
                     // fazer oferta pela propriedade
                     if(opc == 1) {
                         scan = new Scanner(System.in);
+
+                        if(lote.getJogador().isEstarNaCadeia()){
+                            System.out.println("Proprietário está na cadeia! Impossível negociar.");
+                            return;
+                        }
 
                         // oferta do jogador ao dono da propriedade
                         System.out.printf("Digite a sua oferta: ");
@@ -389,9 +411,9 @@ public class Jogo {
                                 System.out.println("Propriedade comprada!");
                                 
                                 // Caso o vendedor tinha monopólio
-                                if(lote.getJogador().getMonopolio()){
+                                if(lote.getJogador().getMonopolio() == 1){
                                     System.out.println(lote.getJogador().getNome()+" não tem mais Monopólio "+lote.getCor());
-                                    lote.getJogador().setMonopolio(false);
+                                    lote.getJogador().setMonopolio(0);
                                 }
 
                                 // Transferindo propriedade
@@ -399,6 +421,7 @@ public class Jogo {
                                 lote.getJogador().getPropriedade().remove(lote);
                                 jogador.setPropriedade(lote);
                                 lote.setJogador(jogador);
+                                lote.setCasaConstruida(false);
 
                                 // Caso o jogador comprou a propriedade e conquistou um Monopólio
                                 if(jogador.monopolio(lote.getCor())){
@@ -425,6 +448,7 @@ public class Jogo {
                     // continua o jogo
                     else if(opc == 2) {
                         System.out.println("Ok! Continuando o jogo.");
+                        
 
                         // volta para a execucao do jogo
                         return;
@@ -442,44 +466,94 @@ public class Jogo {
         else {
             System.out.println("Você entrou na sua propriedade!");
             System.out.println();
-
             // checa se a casa foi construida
             do {
-                System.out.println("1. Construir uma casa ($"+lote.getPrecodeConstrucao()+").");
-                System.out.println("2. Continuar com o jogo.");
-                
-                try{
-                    opc = scan.nextInt();
-                }catch(InputMismatchException e){
-                    System.out.println("Digite um valor válido!\n");
-                    scan = new Scanner(System.in);
-                    continue;
-                }
-                
-                // construir uma casa
-                if(opc == 1) {
-                    // nao possui saldo
-                    if(jogador.getSaldo() < lote.getPrecodeConstrucao()) {
 
-                        System.out.println("Saldo insuficiente!");
+                // Se não tem a casa construida no lote.
+                if(!lote.getCasaConstruida()){
+                    System.out.println("1. Construir uma casa ($"+lote.getPrecodeConstrucao()+").");
+                    System.out.println("2. Continuar com o jogo.");
+
+                    try{
+                        opc = scan.nextInt();
+                    }catch(InputMismatchException e){
+                        System.out.println("Digite um valor válido!\n");
+                        scan = new Scanner(System.in);
+                        continue;
                     }
                     
-                    // possui saldo
+                    // construir uma casa
+                    if(opc == 1) {
+                        // nao possui saldo
+                        if(jogador.getSaldo() < lote.getPrecodeConstrucao()) {
+
+                            System.out.println("Saldo insuficiente!");
+                        }
+                        
+                        // possui saldo
+                        else {
+                            System.out.println("Casa construída!");
+                            banco.pagarTaxa(jogador, -(lote.getPrecodeConstrucao()));
+                            lote.setCasaConstruida(true);
+                        }
+                    }
+
+                    // continuar o jogo
+                    else if(opc == 2) {
+                        System.out.println("OK! Continuando com o jogo.");
+                        return;
+                    }
+
                     else {
-                        System.out.println("Casa construída!");
-                        banco.pagarTaxa(jogador, -(lote.getPrecodeConstrucao()));
-                        lote.setCasaConstruida(true);
+                        System.out.println("Por favor digite uma opção válida!");
                     }
                 }
 
-                // continuar o jogo
-                else if(opc == 2) {
-                    System.out.println("OK! Continuando com o jogo.");
+                // opção de construir hotel
+                else if(jogador.getPodeConstruirHotel()){
+                    System.out.println("1. Construir um hotel ($"+lote.getPrecodeConstrucao()+").");
+                    System.out.println("2. Continuar com o jogo.");
+
+                    try{
+                        opc = scan.nextInt();
+                    }catch(InputMismatchException e){
+                        System.out.println("Digite um valor válido!\n");
+                        scan = new Scanner(System.in);
+                        continue;
+                    }
+                    
+                    // construir uma casa
+                    if(opc == 1) {
+                        // nao possui saldo
+                        if(jogador.getSaldo() < lote.getPrecodeConstrucao()) {
+
+                            System.out.println("Saldo insuficiente!");
+                        }
+                        
+                        // possui saldo
+                        else {
+                            System.out.println("Hotel construído!");
+                            banco.pagarTaxa(jogador, -(lote.getPrecodeConstrucao()));
+                            jogador.setHotelConstruido(true);
+                        }
+                    }
+
+                    // continuar o jogo
+                    else if(opc == 2) {
+                        System.out.println("OK! Continuando com o jogo.");
+                        return;
+                    }
+
+                    else {
+                        System.out.println("Por favor digite uma opção válida!");
+                    }
+                }
+                // Casa construída sem monopólio
+                else{
+                    System.out.println("O jogador não possui um monopólio e não pode construir um hotel");
+                    return;
                 }
 
-                else {
-                    System.out.println("Por favor digite uma opção válida!");
-                }
             } while(opc < 1 || opc > 2);
         }
     }
@@ -528,6 +602,7 @@ public class Jogo {
                 // nao comprar propriedade
                 else if(opc == 2) {
                     System.out.println("Ok! Continuando o jogo.");
+                    return;
                 }
                 
                 // opcao invalida
@@ -548,7 +623,14 @@ public class Jogo {
             metro.calcularAluguel();
 
           // jogador pagou o aluguel ao dono da propriedade
-            if(banco.pagarTaxa(jogador, metro.getJogador(),(metro.getPrecoDeAluguel()))) {
+            if(metro.getJogador().isEstarNaCadeia()){
+                if(!banco.pagarTaxa(jogador, -metro.getPrecoDeAluguel())){
+                    jogadores.remove(jogador);
+                    setQuantidadeJogadores(getQuantidadeJogadores() - 1);          
+                }
+            }
+
+            else if(banco.pagarTaxa(jogador, metro.getJogador(),(metro.getPrecoDeAluguel()))) {
                 System.out.println(jogador.getNome()+" pagou $"+(metro.getPrecoDeAluguel())+" para "+metro.getJogador().getNome());
             }
 
@@ -576,13 +658,18 @@ public class Jogo {
                     try{
                         opc = scan.nextInt();
                     }catch(InputMismatchException e){
-                    System.out.println("Digite um valor válido!\n");
-                    scan = new Scanner(System.in);
-                    continue;
+                        System.out.println("Digite um valor válido!\n");
+                        scan = new Scanner(System.in);
+                        continue;
                     }
                     // fazer oferta pela propriedade
                     if(opc == 1) {
                         scan = new Scanner(System.in);
+
+                        if(metro.getJogador().isEstarNaCadeia()){
+                            System.out.println("Proprietário está na cadeia! Impossível negociar.");
+                            return;
+                        }
 
                         // oferta do jogador ao dono da propriedade
                         System.out.printf("Digite a sua oferta: ");
@@ -648,7 +735,7 @@ public class Jogo {
                     // continua o jogo
                     else if(opc == 2) {
                         System.out.println("Ok! Continuando o jogo.");
-
+                        
                         // volta para a execucao do jogo
                         return;
                     }
@@ -666,6 +753,7 @@ public class Jogo {
             System.out.println("Você entrou na sua propriedade!");
             System.out.println("OK! Continuando com o jogo.");
             System.out.println();
+            return;
         }
         
     }
@@ -714,6 +802,7 @@ public class Jogo {
                 // nao comprar propriedade
                 else if(opc == 2) {
                     System.out.println("Ok! Continuando o jogo.");
+                    return;
                 }
                 
                 // opcao invalida
@@ -733,8 +822,15 @@ public class Jogo {
 
             utilidade.calcularAluguel();
 
+            if(utilidade.getJogador().isEstarNaCadeia()){
+                if(!banco.pagarTaxa(jogador, utilidade.getPrecoDeAluguel())){
+                    jogadores.remove(jogador);
+                    setQuantidadeJogadores(getQuantidadeJogadores() - 1);             
+                }
+            }
+
           // jogador pagou o aluguel ao dono da propriedade
-            if(banco.pagarTaxa(jogador, utilidade.getJogador(), (utilidade.getPrecoDeAluguel()))) {
+            else if(banco.pagarTaxa(jogador, utilidade.getJogador(), (utilidade.getPrecoDeAluguel()))) {
                 System.out.println(jogador.getNome()+" pagou $"+(utilidade.getPrecoDeAluguel())+" para "+utilidade.getJogador().getNome());
             }
 
@@ -769,6 +865,11 @@ public class Jogo {
                     // fazer oferta pela propriedade
                     if(opc == 1) {
                         scan = new Scanner(System.in);
+
+                        if(utilidade.getJogador().isEstarNaCadeia()){
+                            System.out.println("O proprietário está na cadeia! Impossível negociar.");
+                            return;
+                        }
 
                         // oferta do jogador ao dono da propriedade
                         System.out.printf("Digite a sua oferta: ");
@@ -852,6 +953,7 @@ public class Jogo {
             System.out.println("Você entrou na sua propriedade!");
             System.out.println();
             System.out.println("OK! Continuando com o jogo.");
+            return;
         }
     }
 
@@ -893,7 +995,10 @@ public class Jogo {
 
                 // carta de dinheiro do tipo cofre
                 if(carta instanceof CartaDeDinheiro) {
-                    banco.pagarTaxa(jogador, ((CartaDeDinheiro)carta).bonusDaCarta());
+                    if(!banco.pagarTaxa(jogador, ((CartaDeDinheiro)carta).bonusDaCarta())){
+                        jogadores.remove(jogador);
+                        setQuantidadeJogadores(getQuantidadeJogadores() - 1);
+                    }
                 }
 
                 // carta de movimento do tipo cofre
@@ -962,7 +1067,10 @@ public class Jogo {
 
                 // carta de dinheiro do tipo sorte
                 if(carta instanceof CartaDeDinheiro) {
-                    banco.pagarTaxa(jogador, ((CartaDeDinheiro)carta).bonusDaCarta());
+                    if(!banco.pagarTaxa(jogador, ((CartaDeDinheiro)carta).bonusDaCarta())){
+                        jogadores.remove(jogador);
+                        setQuantidadeJogadores(getQuantidadeJogadores() - 1);
+                    }
                 }
 
                 // carta de movimento do tipo sorte
@@ -1036,6 +1144,7 @@ public class Jogo {
 
             //imposto de renda
             case 5:{
+                System.out.println("Imposto de Renda - Escolha o que você prefere pagar:");
                 System.out.println("1. Pagar taxa fixa ($ 200).");
                 System.out.println("2. Pagar 10% da fortuna ($ "+((ImpostoDeRenda)espaco).pagarTaxaPorcentagem(jogador)+").");
 
@@ -1051,6 +1160,10 @@ public class Jogo {
                             if(sucesso){
                                 System.out.println("Taxa paga!");
                             }
+                            else{
+                                jogadores.remove(jogador);
+                                setQuantidadeJogadores(getQuantidadeJogadores() - 1);
+                            }
                             break;
                         }
                         //Pagar 10% da fortuna
@@ -1058,6 +1171,10 @@ public class Jogo {
                             sucesso = banco.pagarTaxa(jogador, -((ImpostoDeRenda)espaco).pagarTaxaPorcentagem(jogador));
                             if(sucesso){
                                 System.out.println("Taxa paga!");
+                            }
+                            else{
+                                jogadores.remove(jogador);
+                                setQuantidadeJogadores(getQuantidadeJogadores() - 1);
                             }
                             break;
                         }
@@ -1079,37 +1196,43 @@ public class Jogo {
                 // Caso o jogador foi mandado para a cadeia (está preso) 
                 if(jogador.isEstarNaCadeia()){
                     // Jogador ainda tem escolhas
-                    if(jogador.getTurnosNaCadeia() < 3){
+                    if(jogador.getTurnosNaCadeia() < 2){
                         System.out.println("O que você deseja fazer? Escolha:");
                         System.out.println("1. Pagar $ 50 ao Banco.");
                         System.out.println("2. Lançar os dados e tentar tirar uma dupla.");
                         
                         opc = scan.nextInt();
+                        
+                        int d0 = 0, d1 = 0;
+                        d0 = dados[0].lancaDado();
+                        d1 = dados[1].lancaDado();
+                        jogador.setLancamentos(d0+d1);
 
                         switch(opc){
                             // Caso jogador pague para sair
                             case 1:{
                                 if(banco.pagarTaxa(jogador, -50)){
                                     System.out.println("Saindo da cadeia.");
+                                    movimentaJogador(rodada, d0, d1);
+                                }
+                                else{
+                                    jogadores.remove(jogador);
+                                    setQuantidadeJogadores(getQuantidadeJogadores() - 1);
                                 }
                                 break;
                             }
                             // Jogador tentando tirar dupla para sair
                             case 2:{
-                                int d0 = 0, d1 = 0;
-                                d0 = dados[0].lancaDado();
-                                d1 = dados[1].lancaDado();
+                                
 
                                 // Caso jogador tente conseguir uma dupla.
                                 if(d0 == d1){
                                     System.out.println("Dupla! Saindo da cadeia.");
                                     jogador.setEstarNaCadeia(false);
                                     jogador.setTurnosNaCadeia(0);
-                                    jogador.setLancamentos(d0+d1);
-                                    tabuleiro.moveJogador(jogador, (d0+d1));
+                                    movimentaJogador(rodada, d0, d1);
                                 }else{
                                     jogador.setTurnosNaCadeia(jogador.getTurnosNaCadeia()+1);
-                                    jogador.setLancamentos(d0+d1);
                                     System.out.println("Falha! "+jogador.getTurnosNaCadeia()+"º turno na cadeia!");
                                 }
                                 break;
@@ -1122,7 +1245,7 @@ public class Jogo {
                         }
                     }
                     // Jogador não tem escolha
-                    else if(jogador.getTurnosNaCadeia() == 3){
+                    else if(jogador.getTurnosNaCadeia() < 3){
                         System.out.println("A 3ª vez é o charme: lançando os dados!");
                         int d0 = 0, d1 = 0;
                                 d0 = dados[0].lancaDado();
@@ -1143,6 +1266,11 @@ public class Jogo {
                                         jogador.setEstarNaCadeia(false);
                                         jogador.setTurnosNaCadeia(0);
                                         tabuleiro.moveJogador(jogador, (d0+d1));
+                                    }
+                                    // Jogador perde 
+                                    else{
+                                        jogadores.remove(jogador);
+                                        setQuantidadeJogadores(getQuantidadeJogadores() - 1);
                                     }
                                 }
                     }
@@ -1176,6 +1304,17 @@ public class Jogo {
 
             //taxa de riqueza
             case 39:{
+                System.out.println("Taxa de Riqueza - $200 extraídos.");
+
+                if(banco.pagarTaxa(jogador, -((TaxaDeRiqueza)espaco).pagarTaxa())){
+                    System.out.println("Taxa paga!");
+                }
+
+                // Jogador perde
+                else{
+                    jogadores.remove(jogador);
+                    setQuantidadeJogadores(getQuantidadeJogadores() - 1);
+                }
                 break;
             }
         }
@@ -1204,20 +1343,60 @@ public class Jogo {
 
         // jogo
         while(true) {
+
+            // Vitória 1: apenas 1 jogador restou.
+            if(getQuantidadeJogadores() == 1){
+                System.out.println("Parabéns "+getTurnoJogador(rodada).getNome()+", você venceu!");
+                return;
+            }
+
             // apresenta o turno do jogador
             System.out.println("Turno de " + getTurnoJogador(rodada).getNome() + ".");
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                //e.printStackTrace();
+            }
             // mostrar o tabuleiro no comeco da rodada
             // mostrarTabuleiro();
 
-            // movimenta o jogador e verifica a condicao de 'dupla' nos dados
-            movimentaJogador(rodada, dado1, dado2);
 
+
+            // movimenta o jogador e verifica a condicao de 'dupla' nos dados
+            // movimenta o jogador caso ele não esteja preso
+            if(!getTurnoJogador(rodada).isEstarNaCadeia())
+                movimentaJogador(rodada, dado1, dado2);
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    //e.printStackTrace();
+            }
             // mostrar o tabuleiro apos a movimentacao do jogador
             // mostrarTabuleiro();
 
             // interage com o espaco no qual o jogador esta
             espacoAtual(getTurnoJogador(rodada), rodada);
 
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                //e.printStackTrace();
+            }
+
+            //Vitória 2: 2 Monopólios conquistados.
+            if(getTurnoJogador(rodada).getMonopolio() == 2){
+                System.out.println("Parabéns "+getTurnoJogador(rodada).getNome()+", você venceu!");
+                return;
+            }
+
+            //Vitória 3: Monopólio c/ Hotel conquistado.
+            if(getTurnoJogador(rodada).getHotelConstruido()){
+                System.out.println("Parabéns "+getTurnoJogador(rodada).getNome()+", você venceu!");
+                return;
+            }
             // passa para a proxima rodada
             rodada++;
         }

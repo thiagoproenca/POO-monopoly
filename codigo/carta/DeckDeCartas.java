@@ -53,7 +53,7 @@ public class DeckDeCartas {
 
     private void atualizaTopoDeck() {
         // checa se o topo chegou na ultima carta
-        if(getTopoDeck() < 15) {
+        if(getTopoDeck() < 16) {
             this.topoDeck++;
         }
 

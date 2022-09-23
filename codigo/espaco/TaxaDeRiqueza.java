@@ -8,7 +8,7 @@
 
 public class TaxaDeRiqueza extends Espaco {
     // atributos
-    private double taxa;
+    private float taxa;
 
     // construtor
     public TaxaDeRiqueza(int posicao) {
@@ -18,7 +18,7 @@ public class TaxaDeRiqueza extends Espaco {
     }
 
     // getters e setters
-    private double getTaxa() {
+    private float getTaxa() {
         return(taxa);
     }
 
@@ -32,7 +32,7 @@ public class TaxaDeRiqueza extends Espaco {
         }
     }
 
-    public double pagarTaxa() {
+    public float pagarTaxa() {
         // retorna o valor da taxa para que o jogador pague $200,00 ao banco
 
         return(this.getTaxa());

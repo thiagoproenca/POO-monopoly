@@ -45,7 +45,6 @@ public class Utilidade extends Propriedade
             {
                 case 1:
                     setPrecoDeAluguel(valor * 4);
-                    jogador.setPosicao(posicao);
                     break;
                 case 2:
                     setPrecoDeAluguel(valor * 10);
