@@ -1,3 +1,14 @@
+/*
+ * Autor: Ana Beatriz e Thiago Proença
+ * 
+ * Descrição da classe:
+ * Sub-classe de 'Carta' que tem a função de ou adicionar ou remover dinheiro  do saldo dos jogadores;
+ * O método inicializaCarta trabalha com dois tipos de cartas:
+ * - COFRE 
+ * - SORTE
+ * O método configura a especificação de cada tipo de carta com a respectiva descrição e também configura a respectiva taxa;
+ * 
+ */
 public class CartaDeDinheiro extends Carta {
     // atributos
     private int taxa;
@@ -8,7 +19,9 @@ public class CartaDeDinheiro extends Carta {
         inicializaCarta(tipoCarta, numCarta);
     }
 
-    // getters e setters
+    /**
+     * Métodos Getters e Setters de cada atributo da classe.
+     */
     private int getTaxa() {
         return(this.taxa);
     }

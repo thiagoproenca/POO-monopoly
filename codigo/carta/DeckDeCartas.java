@@ -1,8 +1,13 @@
-/* Autor: 
- * Nome(s) do(s) autor(es)
+/* 
+ * Autor: Ana Beatriz e Thiago Proença
  * 
  * Descrição da classe: 
- * descrição.
+ * Classe que organiza um conjunto de 16 cartas;
+ * organiza também o tipo de carta: SORTE ou COFRE;
+ * Usamos um arrayList para conter cartas;
+ * Podemos fazer as operações para armazenar deck de cartas, usando o topo do prório deck;
+ * 
+ * 
  */
 
 import java.util.ArrayList;
@@ -42,7 +47,9 @@ public class DeckDeCartas {
         this.topoDeck = 0;
     }
 
-    // metodos especiais
+    /**
+     * Métodos Getters
+     */
     private Carta getCarta(int posicaoNoDeck) {
         return(this.deck.get(posicaoNoDeck));
     }
@@ -63,7 +70,7 @@ public class DeckDeCartas {
         }
     }
 
-    // metodos
+    // métodos
     public Carta retirarCarta() {
         // funcao que retorna a carta no topo do deck
         Carta cartaNoTopo = getCarta(getTopoDeck());

@@ -43,9 +43,9 @@ public class Gerenciador {
 
         // inicializa os jogadores
         jogadores = new Jogador[quantidadeJogadores];
-
         for(int i=0; i<quantidadeJogadores; i++) {
             System.out.printf("Nome do jogador: ", i+1);
+
             jogadores[i] = new Jogador(scan.nextLine());
         }
 

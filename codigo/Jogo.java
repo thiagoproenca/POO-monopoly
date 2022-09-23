@@ -124,11 +124,49 @@ public class Jogo {
     }
 
     /*
-     * mostrar o tabuleiro para os jogadores
-     */
-    // private void mostrarTabuleiro() {
+     * apresenta o jogador e suas informações
+    **/
+    private void apresentaJogador(Jogador jogador) {
+        System.out.println("---------------------------------------------------");
+        System.out.println("Turno de "+jogador.getNome()); // nome
+        System.out.printf("Saldo: $%.2f\n", jogador.getSaldo()); // saldo
 
-    // }
+        System.out.println("---------------------------------------------------");
+        System.out.println();
+    }
+
+    /*
+     * apresenta o espaco atual que o jogador esta apos se movimentar
+    **/
+    private void apresentaEspaco(Espaco espaco) {
+        System.out.println("---------------------------------------------------");
+
+        // checa se o espaço é um lote; nesse caso, mostrará a cor do espaço
+        if(espaco instanceof Lote) {
+            System.out.printf("Espaço atual: %d [ %s | %s ]\n", espaco.getPosicao(), espaco.getNome(), ((Lote)espaco).getCor());
+        }
+        // mostrará uma posição sem cor
+        else {
+            System.out.printf("Espaço atual: %d [ %s ]\n", espaco.getPosicao(), espaco.getNome());
+        }
+
+        // checa se tem proprietario
+        if(espaco instanceof Propriedade) {
+            // tem dono
+            if(((Propriedade)espaco).getJogador() != null) {
+                System.out.println("Dono da propriedade: "+((Propriedade)espaco).getJogador().getNome());
+                System.out.println("Aluguel da propriedade: "+((Propriedade)espaco).getPrecoDeAluguel());
+            }
+
+            // nao tem dono
+            else {
+                System.out.println("Proriedade sem dono");
+            }
+        }
+
+        System.out.println("---------------------------------------------------");
+        System.out.println();
+    }
 
     /*
      * paga um jogador que deu a volta
@@ -218,18 +256,14 @@ public class Jogo {
         
         // propriedade sem dono
         if(lote.getJogador() == null) {
-            // informacoes sobre a propriedade
-            System.out.println(lote.getCor()+" | "+lote.getNome()); // nome da propriedade
-            System.out.println("Essa propriedade não possui um proprietário.");
-            System.out.println();
-
             // opcoes do jogador
-            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "? Saldo: $ "+jogador.getSaldo()+".");
+            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "?");
             
             do {
                 propriedadeSemDono(lote);
                 try{
-                opc = scan.nextInt();
+                    System.out.printf("> ");
+                    opc = scan.nextInt();
                 }catch(InputMismatchException e){
                     System.out.println("Digite um valor válido!\n");
                     scan = new Scanner(System.in);
@@ -298,11 +332,6 @@ public class Jogo {
 
         // propriedade com dono
         else if(lote.getJogador() != jogador) {
-            // informacoes sobre a propriedade
-            System.out.println(lote.getCor()+" | "+lote.getNome()); // nome da propriedade
-            System.out.println("Propriedade de: "+lote.getJogador().getNome());
-            System.out.println();
-
             lote.calcularAluguel();
 
             // verifica se tem monopolio; caso tenha, pagara x2 o preco do aluguel
@@ -347,7 +376,7 @@ public class Jogo {
             }
 
             // opcoes do jogador
-            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "? Saldo: $ "+jogador.getSaldo()+".");
+            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "?");
 
             do {
                 //propriedadeComDono(lote);
@@ -357,6 +386,7 @@ public class Jogo {
                     propriedadeComDono(lote);
                   
                     try{
+                        System.out.printf("> ");
                         opc = scan.nextInt();
                     }catch(InputMismatchException e){
                         System.out.println("Digite um valor válido!\n");
@@ -376,7 +406,8 @@ public class Jogo {
                         System.out.printf("Digite a sua oferta: ");
                         float oferta = 0;
                         try{
-                           oferta = scan.nextFloat();
+                            System.out.printf("> ");
+                            oferta = scan.nextFloat();
                         }catch(InputMismatchException e){
                             System.out.println("Digite um valor válido!\n");
                             scan = new Scanner(System.in);
@@ -400,6 +431,7 @@ public class Jogo {
 
                             scan = new Scanner(System.in);
                             try{
+                                System.out.printf("> ");
                                 n = scan.nextInt();
                             }catch(InputMismatchException e){
                                 System.out.println("Digite um valor válido!\n");
@@ -475,6 +507,7 @@ public class Jogo {
                     System.out.println("2. Continuar com o jogo.");
 
                     try{
+                        System.out.printf("> ");
                         opc = scan.nextInt();
                     }catch(InputMismatchException e){
                         System.out.println("Digite um valor válido!\n");
@@ -564,17 +597,13 @@ public class Jogo {
         
         // propriedade sem dono
         if(metro.getJogador() == null) {
-            // informacoes sobre a propriedade
-            System.out.println(metro.getNome()); // nome da propriedade
-            System.out.println("Essa propriedade não possui um proprietário.");
-            System.out.println();
-
             // opcoes do jogador
-            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "? Saldo: $ "+jogador.getSaldo()+".");
+            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "?");
             
             do {
                 estacaoSemDono(metro);
                 try{
+                    System.out.printf("> ");
                     opc = scan.nextInt();
                 }catch(InputMismatchException e){
                     System.out.println("Digite um valor válido!\n");
@@ -615,14 +644,9 @@ public class Jogo {
         
         // propriedade com dono
         else if(metro.getJogador() != jogador) {
-            // informacoes sobre a propriedade
-            System.out.println(metro.getNome()); // nome da propriedade
-            System.out.println("Propriedade de: "+metro.getJogador().getNome());
-            System.out.println();
-
             metro.calcularAluguel();
 
-          // jogador pagou o aluguel ao dono da propriedade
+            // jogador pagou o aluguel ao dono da propriedade
             if(metro.getJogador().isEstarNaCadeia()){
                 if(!banco.pagarTaxa(jogador, -metro.getPrecoDeAluguel())){
                     jogadores.remove(jogador);
@@ -645,7 +669,7 @@ public class Jogo {
             
 
             // opcoes do jogador
-            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "? Saldo: $ "+jogador.getSaldo()+".");
+            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "?");
 
             do {
                 //propriedadeComDono(metro);
@@ -656,6 +680,7 @@ public class Jogo {
                     propriedadeComDono(metro);
 
                     try{
+                        System.out.printf("> ");
                         opc = scan.nextInt();
                     }catch(InputMismatchException e){
                         System.out.println("Digite um valor válido!\n");
@@ -675,7 +700,8 @@ public class Jogo {
                         System.out.printf("Digite a sua oferta: ");
                         float oferta = 0;
                         try{
-                           oferta = scan.nextFloat();
+                            System.out.printf("> ");
+                            oferta = scan.nextFloat();
                         }catch(InputMismatchException e){
                             System.out.println("Digite um valor válido!\n");
                             scan = new Scanner(System.in);
@@ -699,6 +725,7 @@ public class Jogo {
 
                             scan = new Scanner(System.in);
                             try{
+                                System.out.printf("> ");
                                 n = scan.nextInt();
                             }catch(InputMismatchException e){
                                 System.out.println("Digite um valor válido!\n");
@@ -764,17 +791,13 @@ public class Jogo {
         
         // propriedade sem dono
         if(utilidade.getJogador() == null) {
-            // informacoes sobre a propriedade
-            System.out.println(utilidade.getNome()); // nome da propriedade
-            System.out.println("Essa propriedade não possui um proprietário.");
-            System.out.println();
-
             // opcoes do jogador
-            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "? Saldo: $ "+jogador.getSaldo()+".");
+            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "?");
             
             do {
                 estacaoSemDono(utilidade);
                 try{
+                    System.out.printf("> ");
                     opc = scan.nextInt();
                 }catch(InputMismatchException e){
                     System.out.println("Digite um valor válido!\n");
@@ -815,11 +838,6 @@ public class Jogo {
         
         // propriedade com dono
         else if(utilidade.getJogador() != jogador) {
-            // informacoes sobre a propriedade
-            System.out.println(utilidade.getNome()); // nome da propriedade
-            System.out.println("Propriedade de: "+utilidade.getJogador().getNome());
-            System.out.println();
-
             utilidade.calcularAluguel();
 
             if(utilidade.getJogador().isEstarNaCadeia()){
@@ -829,7 +847,7 @@ public class Jogo {
                 }
             }
 
-          // jogador pagou o aluguel ao dono da propriedade
+            // jogador pagou o aluguel ao dono da propriedade
             else if(banco.pagarTaxa(jogador, utilidade.getJogador(), (utilidade.getPrecoDeAluguel()))) {
                 System.out.println(jogador.getNome()+" pagou $"+(utilidade.getPrecoDeAluguel())+" para "+utilidade.getJogador().getNome());
             }
@@ -845,17 +863,16 @@ public class Jogo {
             
 
             // opcoes do jogador
-            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "? Saldo: $ "+jogador.getSaldo()+".");
+            System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "?");
 
             do {
-                //propriedadeComDono(utilidade);
-
                 // jogador podera dar infinitas ofertas e dono podera recusa-las
                 while(true) {
 
                     propriedadeComDono(utilidade);
 
                     try{
+                        System.out.printf("> ");
                         opc = scan.nextInt();
                     }catch(InputMismatchException e){
                     System.out.println("Digite um valor válido!\n");
@@ -875,7 +892,8 @@ public class Jogo {
                         System.out.printf("Digite a sua oferta: ");
                         float oferta = 0;
                         try{
-                           oferta = scan.nextFloat();
+                            System.out.printf("> ");
+                            oferta = scan.nextFloat();
                         }catch(InputMismatchException e){
                             System.out.println("Digite um valor válido!\n");
                             scan = new Scanner(System.in);
@@ -899,6 +917,7 @@ public class Jogo {
 
                             scan = new Scanner(System.in);
                             try{
+                                System.out.printf("> ");
                                 n = scan.nextInt();
                             }catch(InputMismatchException e){
                                 System.out.println("Digite um valor válido!\n");
@@ -966,21 +985,29 @@ public class Jogo {
         Espaco espaco = tabuleiro.getEspaco(jogador.getPosicao());
 
         switch(espaco.getPosicao()) {
+            // ponto de partida
+            case 1: {
+                apresentaEspaco(espaco);
+            }
+
             // lote
             case 2, 4, 7, 9, 10, 12, 14, 15, 17, 19, 20, 22, 24, 25, 27, 28, 30, 32, 33, 35, 38, 40: {
                 // verificacoes do espaco de lote
+                apresentaEspaco(espaco);
                 espacoLote(jogador, ((Lote)espaco), rodada);
                 break;
             }
             
             //estação de metrô
             case 6, 16, 26, 36:{
+                apresentaEspaco(espaco);
                 espacoMetro(jogador, ((Estacao_de_Metro)espaco), rodada);
                 break;
             }
 
             //utilidade
             case 13, 29:{
+                apresentaEspaco(espaco);
                 espacoUtilidade(jogador, ((Utilidade)espaco), rodada);
                 break;
             }
@@ -989,12 +1016,14 @@ public class Jogo {
             case 3, 18, 34: {
                 Carta carta = deckCofre.retirarCarta();
                 
-                System.out.println("=-=-=- CARTA COFRE -=-=-=");
-
+                apresentaEspaco(espaco);
+                System.out.println("=-=-=-=- CARTA DE COFRE -=-=-=-=");
                 System.out.println(carta.getEspecificacao());
+                System.out.println();
 
                 // carta de dinheiro do tipo cofre
                 if(carta instanceof CartaDeDinheiro) {
+                    // checa se foi a falencia
                     if(!banco.pagarTaxa(jogador, ((CartaDeDinheiro)carta).bonusDaCarta())){
                         jogadores.remove(jogador);
                         setQuantidadeJogadores(getQuantidadeJogadores() - 1);
@@ -1048,7 +1077,7 @@ public class Jogo {
                 }
 
                 // carta 'va para cadeia' do tipo cofre
-                else {
+                else if(carta instanceof CartaVaParaCadeia) {
                     tabuleiro.posicionaJogador(jogador, 11);
                     jogador.setTurnosNaCadeia(0);
                     jogador.setEstarNaCadeia(true);
@@ -1061,9 +1090,10 @@ public class Jogo {
             case 8, 23, 37: {
                 Carta carta = deckSorte.retirarCarta();
                 
-                System.out.println("=-=-=- CARTA SORTE -=-=-=");
-
+                apresentaEspaco(espaco);
+                System.out.println("=-=-=-=-=-=-=- CARTA DE SORTE -=-=-=-=-=-=-=");
                 System.out.println(carta.getEspecificacao());
+                System.out.println();
 
                 // carta de dinheiro do tipo sorte
                 if(carta instanceof CartaDeDinheiro) {
@@ -1133,7 +1163,7 @@ public class Jogo {
                 }
 
                 // carta 'va para cadeia' do tipo sorte
-                else {
+                else if(carta instanceof CartaVaParaCadeia) {
                     tabuleiro.posicionaJogador(jogador, 11);
                     jogador.setTurnosNaCadeia(0);
                     jogador.setEstarNaCadeia(true);
@@ -1144,7 +1174,8 @@ public class Jogo {
 
             //imposto de renda
             case 5:{
-                System.out.println("Imposto de Renda - Escolha o que você prefere pagar:");
+                apresentaEspaco(espaco);
+                System.out.println("Escolha o método de pagamento:");
                 System.out.println("1. Pagar taxa fixa ($ 200).");
                 System.out.println("2. Pagar 10% da fortuna ($ "+((ImpostoDeRenda)espaco).pagarTaxaPorcentagem(jogador)+").");
 
@@ -1152,6 +1183,7 @@ public class Jogo {
                 boolean sucesso = false;
                 
                 while(true){
+                    System.out.printf("> ");
                     n = scan.nextInt();
                     switch(n){
                         // Pagar taxa fixa
@@ -1192,7 +1224,7 @@ public class Jogo {
 
             //cadeia
             case 11:{
-                
+                apresentaEspaco(espaco);
                 // Caso o jogador foi mandado para a cadeia (está preso) 
                 if(jogador.isEstarNaCadeia()){
                     // Jogador ainda tem escolhas
@@ -1201,6 +1233,7 @@ public class Jogo {
                         System.out.println("1. Pagar $ 50 ao Banco.");
                         System.out.println("2. Lançar os dados e tentar tirar uma dupla.");
                         
+                        System.out.printf("> ");
                         opc = scan.nextInt();
                         
                         int d0 = 0, d1 = 0;
@@ -1214,6 +1247,7 @@ public class Jogo {
                                 if(banco.pagarTaxa(jogador, -50)){
                                     System.out.println("Saindo da cadeia.");
                                     movimentaJogador(rodada, d0, d1);
+                                    espacoAtual(jogador, rodada);
                                 }
                                 else{
                                     jogadores.remove(jogador);
@@ -1288,13 +1322,14 @@ public class Jogo {
 
             //estacionamento grátis
             case 21:{
-                System.out.println("Estacionamento grátis!");
+                apresentaEspaco(espaco);
                 System.out.println();
                 break;
             }
 
             //vá para cadeia
             case 31:{
+                apresentaEspaco(espaco);
                 jogador.setEstarNaCadeia(true);
                 jogador.setTurnosNaCadeia(0);
                 tabuleiro.posicionaJogador(jogador, 11);
@@ -1351,17 +1386,16 @@ public class Jogo {
             }
 
             // apresenta o turno do jogador
-            System.out.println("Turno de " + getTurnoJogador(rodada).getNome() + ".");
+            // System.out.println("Turno de " + getTurnoJogador(rodada).getNome() + ".");
+            apresentaJogador(getTurnoJogador(rodada));
+
+
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 //e.printStackTrace();
             }
-            // mostrar o tabuleiro no comeco da rodada
-            // mostrarTabuleiro();
-
-
 
             // movimenta o jogador e verifica a condicao de 'dupla' nos dados
             // movimenta o jogador caso ele não esteja preso
@@ -1373,8 +1407,6 @@ public class Jogo {
                     // TODO Auto-generated catch block
                     //e.printStackTrace();
             }
-            // mostrar o tabuleiro apos a movimentacao do jogador
-            // mostrarTabuleiro();
 
             // interage com o espaco no qual o jogador esta
             espacoAtual(getTurnoJogador(rodada), rodada);

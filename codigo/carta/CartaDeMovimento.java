@@ -1,3 +1,15 @@
+/*
+ * Autor: Ana Beatriz e Thiago Proença
+ * 
+ * Descrição da classe:
+ * Sub-classe de 'Carta' que tem a função movimentar jogadores nas seguintes direções: para frente, para trás ou para
+ * umespaço específico;
+ * O método inicializaCarta trabalha com dois tipos de cartas:
+ * - COFRE 
+ * - SORTE
+ * O método configura a especificação de cada tipo de carta com a respectiva descrição, configura o movimento e aposição no tabuleiro
+ * 
+ */
 public class CartaDeMovimento extends Carta {
     // atributos
     private int movimento;
@@ -9,7 +21,9 @@ public class CartaDeMovimento extends Carta {
         inicializaCarta(tipoCarta, numCarta);
     }
 
-    // getters e setters
+    /**
+     * Métodos Getters e Setters de cada atributo da classe.
+     */
     private int getMovimento() {
         return(this.movimento);
     }
@@ -26,7 +40,7 @@ public class CartaDeMovimento extends Carta {
         this.posicaoTabuleiro = posicao;
     }
 
-    // metodos
+    // métodos
     private void inicializaCarta(int tipoCarta, int numCarta) {
         // inicializa a carta como cofre
         if(tipoCarta == 0) {
