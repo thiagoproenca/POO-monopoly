@@ -1,3 +1,13 @@
+/*
+ * Autor: Thiago Proença
+ * 
+ * Descrição da classe:
+ * Classe filha de Espaco que representa o espaço inicial do jogo;
+ * cada jogador começa o jogo nesse espaço com 1500 no seu estoque;
+ * cada jogador recebe um valor atualizado ao voltar a este espaço.
+ * o método deuAVolta() atualiza o valor da taxa que o jogador receberá;
+ * o método receberTaxa() retorna a taxa do ponto de partida ao jogador;
+ */
 public class PontoDePartida extends Espaco {
     // atributos
     private float taxa;
@@ -9,7 +19,9 @@ public class PontoDePartida extends Espaco {
         inicializaEspaco(posicao);
     }
 
-    // getters e setters
+    /**
+     * Métodos Getters e Setters de cada atributo da classe.
+     */
     private float getTaxa() {
         return(this.taxa);
     }
@@ -18,7 +30,7 @@ public class PontoDePartida extends Espaco {
         this.taxa = valor;
     }
 
-    //metodos
+    // métodos
     private void inicializaEspaco(int posicao) {
         switch(posicao) {
             case 1:

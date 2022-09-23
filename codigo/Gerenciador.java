@@ -1,7 +1,11 @@
-/* Autor: 
- * Thiago Proença
+/* Autor: Thiago Proença
  * 
- * Descrição da classe: 
+ * Descrição da classe: Classe que tem a função principal do jogo, inicia o jogo, recebe tanto a quantidade de jogadores como
+ * seus respectivos nomes;
+ * essa classe também faz o tratamento de exceções num nível mais geral, levando em conta alguns quesitos:
+ * - Quantidade mínima e máxima de jogadores necessários para o funcionamento correto do jogo;
+ * - Digitação de um valor inválidom gerando um InputMismatchException que é tratado, pedindo para que o jogador informe
+ * novamente um valor válido.
  * 
  */
 

@@ -1,3 +1,16 @@
+/*
+ * Autor: Renan Oliveira
+ * 
+ * Descrição da classe:
+ * A classe 'Jogador' comunica-se com várias outras classes. Com algumas mantém um relacionamento de agregação e
+ * com outra relacionamento de composição;
+ *  'Jogador' é responsável por saber alguns aspectos específicos dos jogadores como nome, saldo, quantidade de propriedades,
+ * duplas dos últimos lançamentos dos dados, qual espaço está no tabuleiro ou saber se tem ou não monopólios.
+ * De forma precisa, a classe Jogador conta a quantidade de lotes de um grupo de lote. Caso esse valor atinja a quantidade 
+ * máxima de lotes por grupo, retorna true, informando que o jogador tem um monopólio de um lote.
+ * Outras especificidades podem ser verificadas no corpo do código.
+ */
+
 import java.util.ArrayList;
 
 public class Jogador{
@@ -27,7 +40,9 @@ public class Jogador{
         this.podeConstruirHotel = false;
     }
 
-    // getters e setters
+    /**
+     * Métodos Getters e Setters de cada atributo da classe.
+     */
     public String getNome() {
         return nome;
     }

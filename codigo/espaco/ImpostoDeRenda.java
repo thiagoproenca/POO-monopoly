@@ -1,10 +1,15 @@
-/* Autor: 
- * Thiago Proença
+/* 
+ * Autor: Thiago Proença
  * 
  * Descrição da classe: 
- * Classe que implementa um espaco "ImpostoDeRenda" no "Tabuleiro"; essa classe tem a responsabilidade de
- * retornar ao "Banco" o valor da 'imposto de renda' para que o jogador pague essa taxa.
- * O "Jogador" tera a opcao de pagar uma taxa fixa ou 10% da sua fortuna.
+ * Classe que implementa um espaço "ImpostoDeRenda" no "Tabuleiro"; 
+ * essa classe tem a responsabilidade de retornar ao "Banco" o valor da 'imposto de renda' para que o jogador pague 
+ * essa taxa. 
+ * O "Jogador" terá as seguintes opções:
+ * - Pagar uma taxa fixa ($200) - método pagarTaxaFixo();
+ * - Pagar 10% de sua fortuna total - método pagarTaxaPorcentagem(Jogador jogador).
+ * Por fim, temos a inicialização de ImpostoDeRenda que seta deste espaço, usando a posicao como parâmetro
+ * estrutura condicional switch-case.
  */
 
 public class ImpostoDeRenda extends Espaco {
@@ -18,7 +23,9 @@ public class ImpostoDeRenda extends Espaco {
         inicializaEspaco(posicao);
     }
 
-    // getters e setters
+    /**
+     * Métodos Getters e Setters de cada atributo da classe.
+     */
     private float getImposto() {
         return(this.imposto);
     }
@@ -27,7 +34,7 @@ public class ImpostoDeRenda extends Espaco {
         this.imposto = imposto;
     }
 
-    //metodos
+    // métodos
     private void inicializaEspaco(int posicao) {
         switch(posicao) {
             case 5:

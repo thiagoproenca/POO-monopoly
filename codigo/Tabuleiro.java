@@ -1,3 +1,13 @@
+/*
+ * Autor: Arthur Naoto
+ * Descrição da classe:
+ * Classe que contém 40 diferentes espaços;
+ * classe que vela pela movimentação dos jogadores nos seus respectivos espaços;
+ * o nome de cada espaço já foi fornecido no arquivo NomeDoEspaco.java.
+ * É importante destacar que o método privado setPosicao(int posicao) configura de forma específica a posição
+ * de cada espaço existente no tabuleiro.
+ */
+
 import java.util.ArrayList;
 
 public class Tabuleiro {

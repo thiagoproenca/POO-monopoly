@@ -1,9 +1,13 @@
-/* Autor: 
- * Thiago Proença
+/* 
+ * Autor: Thiago Proença
  * 
  * Descrição da classe: 
- * Classe que implementa um espaco "TaxaDeRiqueza" no "Tabuleiro". Essa classe fica responsavel por retornar
- * um valor para que "Banco" possa entregar ao "Jogador" que cair neste espaco.
+ * Classe que implementa um espaco "TaxaDeRiqueza" no "Tabuleiro". Essa classe é responsável por fazer
+ * o/a "Jogadora" pagar uma taxa ao "Banco", caso este/a caia nesse esoaço.
+ * O valor que o "Jogador" deverá pagar ao "Banco" é $200.
+ * Temos também:
+ * - A inicialização deste espaço no método inicializaEspaco(int posicao);
+ * - O método pagarTaxa() que retorna o valor da taxa que o "Jogador" deve pagar ao "Banco".
  */
 
 public class TaxaDeRiqueza extends Espaco {
@@ -22,7 +26,7 @@ public class TaxaDeRiqueza extends Espaco {
         return(taxa);
     }
 
-    //metodos
+    // métodos
     private void inicializaEspaco(int posicao) {
         switch(posicao) {
             case 39:

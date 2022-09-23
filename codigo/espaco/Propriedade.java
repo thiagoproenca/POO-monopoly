@@ -17,20 +17,14 @@ public abstract class Propriedade extends Espaco
     protected int precodeConstrucao;
     protected int precoDeAluguel;
 
-    //Construtor
-
     /**
-     * Método abstrato que deverá ser implementado por todas as classes que herdam da classe Propriedade.
+     * Método abstrato que deverá ser implementado por todas as classes que herdam da classe Propriedade(sub classes de Propriedade).
      */
-
     public abstract void calcularAluguel();
 
     /**
-     *
      * Métodos Getters e Setters de todos os atributos que a classe Propriedade possui.
      */
-
-
     public Jogador getJogador() 
     {
         return jogador;

@@ -13,8 +13,6 @@
 
   public class Estacao_de_Metro extends Propriedade
   {
-  
-      //protected int precoDeAluguel = 25; //Valor padrão do aluguel de uma EstaçãoDeMetro.
       private int estacoes; //Variável que deve ter o valor atribuido pelo construtor. Esse valor deve ser passado pela classe Jogador.
   
       //Construtor
@@ -27,8 +25,13 @@
       public void calcularAluguel() 
       {
           /**
-           * Método calcularAluguel() implementado pela classe EstaçãoDeMetrô. Esse método usa o valor da variável
-           * estacoes para calcular o valor do aluguel, com o uso de uma estrutura condicional Switch - Case.
+           * Implementação do método abstrato calcularAluguel() que não tem um valor como parâmetro, todavia aloca o valor correto no
+           * atributo PrecoDeAluguel de acordo com o valor contido na variável estacoes(número de estações que um jogador possui no momento
+           * que chamar o método em questão), usando a estrutura condicional switch-case.
+           * É importante frisar que o PrecoDeAluguel, na estação de metró, varia de acordo com o número de estações que um jogador possui
+           * momento.
+           * Assim, foi possível verificar que temos alguns atributos que estão em falta como: preço de casa/hotel e aluguel com casa. 
+           * Isso deve-se ao fato de que não é possível construir uma casa/hotel numa estação de metrô.
            */
   
           if(posicao == 6 || posicao == 16 || posicao == 26 || posicao ==36)
@@ -81,30 +84,34 @@
       public void calcularAtributos(int posicao)
       {
   
+        /* 
+         * Implementação do método calcularAtributos(), que recebe um valor de tipo primitivo inteiro como parâmetro e
+         * aloca os valores corretos nos atributos da classe de acordo com o valor contido da variável posicao, usando
+         * a estrutura condicional Switch - Case.
+         * Além disso, estamos setando o preço de compra de uma estação de metró, visto que é fixo e estamos também setando o nome do
+         * espaço da estação(usando o toString()), mediante a posição recebida como parâmetro no switch-case.
+         */
+
           switch (posicao)
           {
       
               case 6:
                   setPreco(200);
-                  //System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
                   setPosicao(posicao);
                   setNome(NomeDoEspaco.METRO_MARACANA.toString());
               break;
               case 16:
                   setPreco(200);
-                  //System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
                   setPosicao(posicao);
                   setNome(NomeDoEspaco.METRO_CARIOCA.toString());
               break;
               case 26:
                   setPreco(200);
-                  //System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
                   setPosicao(posicao);
                   setNome(NomeDoEspaco.METRO_CONSOLACAO.toString());
               break;
               case 36:
                   setPreco(200);
-                  //System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
                   setPosicao(posicao);
                   setNome(NomeDoEspaco.METRO_REPUBLICA.toString());
               break;

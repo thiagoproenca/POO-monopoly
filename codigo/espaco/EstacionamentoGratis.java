@@ -1,9 +1,12 @@
-/* Autor: 
- * Thiago Proença
+/* 
+ * Autor: Thiago Proença
  * 
  * Descrição da classe: 
- * Classe que implementa "EstacionamentoGratis" no "Tabuleiro". Essa classe nao tem nenhuma resposabilidade;
- * ela implementa um "Espaco" no "Tabuleiro" que nao tem nenhuma funcao.
+ * Sub-classe de 'Espaco';
+ * classe que implementa "EstacionamentoGratis" no "Tabuleiro". Essa classe não tem nenhuma resposabilidade;
+ * ela implementa um "Espaco" no "Tabuleiro" que não tem alguma função, pois nada acontece nesse espaço.
+ * Logo, fizemos a inicialização deste espaço, setando o nome do mesmo, por meio da posicao contida na estrutura condicional 
+ * switch-case.
  */
 
 public class EstacionamentoGratis extends Espaco {
@@ -13,10 +16,8 @@ public class EstacionamentoGratis extends Espaco {
     public EstacionamentoGratis(int posicao) {
         inicializaEspaco(posicao);
     }
-    
-    // getters e setters
 
-    //metodos
+    // métodos
     private void inicializaEspaco(int posicao) {
         switch(posicao) {
             case 21:

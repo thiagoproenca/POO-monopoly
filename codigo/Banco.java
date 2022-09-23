@@ -1,3 +1,12 @@
+/*
+ * Autor: Arthur Naoto
+ * Descrição da classe:
+ * Classe que lida com as operações monetárias do jogo.
+ * De forma resumida, o Banco tem a responsabilidade de pagar o jogador, receber dinheiro do jogador ou atuar como intermediador
+ * entre jogadores que estiverem transacionando;
+ * A especificidade dos métodos da classe 'Banco' está detalhado no corpo de cada método.
+ */
+
 public class Banco{
 
     public Banco(){

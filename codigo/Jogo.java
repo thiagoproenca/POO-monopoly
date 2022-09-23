@@ -1,7 +1,11 @@
 /* Autor: 
  * Arthur Nitto e Thiago Proença
  * 
- * Descrição da classe: 
+ * Descrição da classe: Classe responsável por determinar as regras do jogo, controlando os métodos
+ * getters/setters públicos, métodos públicos de outras classes com quem mantém relacionamento.
+ * Tem-se dentro do jogo um tabuleiro os diferentes espaços, tem-se um arrayList 
+ * de jogadores, um vetor para dados, uma variável do tipo Banco, 
+ * uma do tipo DeckDeCartas deckcofre e DeckDeCartas deckcsorte.
  * 
  */
 
@@ -143,7 +147,7 @@ public class Jogo {
 
         // checa se o espaço é um lote; nesse caso, mostrará a cor do espaço
         if(espaco instanceof Lote) {
-            System.out.printf("Espaço atual: %d [ %s | %s ]\n", espaco.getPosicao(), espaco.getNome(), ((Lote)espaco).getCor());
+            System.out.printf("Espaço atual: %d [ %s | %s ]\n", espaco.getPosicao(), ((Lote)espaco).getCor(), espaco.getNome());
         }
         // mostrará uma posição sem cor
         else {
@@ -154,8 +158,9 @@ public class Jogo {
         if(espaco instanceof Propriedade) {
             // tem dono
             if(((Propriedade)espaco).getJogador() != null) {
+                ((Propriedade)espaco).calcularAluguel();
                 System.out.println("Dono da propriedade: "+((Propriedade)espaco).getJogador().getNome());
-                System.out.println("Aluguel da propriedade: "+((Propriedade)espaco).getPrecoDeAluguel());
+                System.out.println("Aluguel da propriedade: $"+((Propriedade)espaco).getPrecoDeAluguel());
             }
 
             // nao tem dono
@@ -177,7 +182,7 @@ public class Jogo {
         ((PontoDePartida)espaco).deuAVolta();
         
         banco.pagarTaxa(jogador, ((PontoDePartida)espaco).receberTaxa());
-        System.out.println(jogador.getNome() + " completou uma volta!\n\tO jogador recebeu $200!");
+        System.out.println(jogador.getNome() + " completou uma volta e recebeu $200!");
     }
 
     /*
@@ -198,11 +203,14 @@ public class Jogo {
             // jogador tirou 3 duplas e vai para a cadeia
             if(vezesJogadas == 4) {
                 getTurnoJogador(rodada).setPosicao(11);
-                getTurnoJogador(rodada).setTurnosNaCadeia(0);
+                getTurnoJogador(rodada).setTurnosNaCadeia(-1);
                 getTurnoJogador(rodada).setEstarNaCadeia(true);
 
+                System.out.println(getTurnoJogador(rodada).getNome()+" foi para a cadeia!");
+                System.out.println();
+
                 // impede a execucao da checagem de 'deu a volta'
-                return;
+                break;
             }
 
             lancarDados();
@@ -379,8 +387,6 @@ public class Jogo {
             System.out.println("O que você gostaria de fazer, " + getTurnoJogador(rodada).getNome() + "?");
 
             do {
-                //propriedadeComDono(lote);
-
                 // jogador podera dar infinitas ofertas e dono podera recusa-las
                 while(true) {
                     propriedadeComDono(lote);
@@ -988,6 +994,7 @@ public class Jogo {
             // ponto de partida
             case 1: {
                 apresentaEspaco(espaco);
+                break;
             }
 
             // lote
@@ -1017,7 +1024,7 @@ public class Jogo {
                 Carta carta = deckCofre.retirarCarta();
                 
                 apresentaEspaco(espaco);
-                System.out.println("=-=-=-=- CARTA DE COFRE -=-=-=-=");
+                System.out.println("=-=-=-=-=-=- CARTA DE COFRE -=-=-=-=-=-=");
                 System.out.println(carta.getEspecificacao());
                 System.out.println();
 
@@ -1031,7 +1038,7 @@ public class Jogo {
                 }
 
                 // carta de movimento do tipo cofre
-                if(carta instanceof CartaDeMovimento) {
+                else if(carta instanceof CartaDeMovimento) {
                     //carta de movimento especial
                     if(((CartaDeMovimento)carta).bonusDeMovimento() == 0 && ((CartaDeMovimento)carta).movimentaParaEspaco() == 0) {
                         // companhia eletrica
@@ -1081,6 +1088,9 @@ public class Jogo {
                     tabuleiro.posicionaJogador(jogador, 11);
                     jogador.setTurnosNaCadeia(0);
                     jogador.setEstarNaCadeia(true);
+
+                    System.out.println(jogador.getNome()+" foi para a cadeia!");
+                    System.out.println();
                 }
 
                 break;
@@ -1091,7 +1101,7 @@ public class Jogo {
                 Carta carta = deckSorte.retirarCarta();
                 
                 apresentaEspaco(espaco);
-                System.out.println("=-=-=-=-=-=-=- CARTA DE SORTE -=-=-=-=-=-=-=");
+                System.out.println("=-=-=-=-=-=-=-=-=- CARTA DE SORTE -=-=-=-=-=-=-=-=-=");
                 System.out.println(carta.getEspecificacao());
                 System.out.println();
 
@@ -1104,7 +1114,7 @@ public class Jogo {
                 }
 
                 // carta de movimento do tipo sorte
-                if(carta instanceof CartaDeMovimento) {
+                else if(carta instanceof CartaDeMovimento) {
                     //carta de movimento especial
                     if(((CartaDeMovimento)carta).bonusDeMovimento() == 0 && ((CartaDeMovimento)carta).movimentaParaEspaco() == 0) {
                         // estacao maracana
@@ -1167,6 +1177,9 @@ public class Jogo {
                     tabuleiro.posicionaJogador(jogador, 11);
                     jogador.setTurnosNaCadeia(0);
                     jogador.setEstarNaCadeia(true);
+
+                    System.out.println(jogador.getNome()+" foi para a cadeia!");
+                    System.out.println();
                 }
                 
                 break;
@@ -1227,8 +1240,13 @@ public class Jogo {
                 apresentaEspaco(espaco);
                 // Caso o jogador foi mandado para a cadeia (está preso) 
                 if(jogador.isEstarNaCadeia()){
+                    // jogador tirou 3 duplas de dados
+                    if(jogador.getTurnosNaCadeia() == -1) {
+                        jogador.setTurnosNaCadeia(0);
+                    }
+
                     // Jogador ainda tem escolhas
-                    if(jogador.getTurnosNaCadeia() < 2){
+                    else if(jogador.getTurnosNaCadeia() < 2){
                         System.out.println("O que você deseja fazer? Escolha:");
                         System.out.println("1. Pagar $ 50 ao Banco.");
                         System.out.println("2. Lançar os dados e tentar tirar uma dupla.");
@@ -1237,8 +1255,9 @@ public class Jogo {
                         opc = scan.nextInt();
                         
                         int d0 = 0, d1 = 0;
-                        d0 = dados[0].lancaDado();
-                        d1 = dados[1].lancaDado();
+                        lancarDados();
+                        d0 = getDado(0).getResultado();
+                        d1 = getDado(1).getResultado();
                         jogador.setLancamentos(d0+d1);
 
                         switch(opc){
@@ -1412,7 +1431,7 @@ public class Jogo {
             espacoAtual(getTurnoJogador(rodada), rodada);
 
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 //e.printStackTrace();

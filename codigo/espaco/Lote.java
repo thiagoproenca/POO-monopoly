@@ -36,6 +36,15 @@ public class Lote extends Propriedade
     @Override
     public void calcularAluguel()
     {   
+        /**
+         *Implementação do método abstrato calcularAluguel() que não tem um valor como parâmetro, porém aloca os valores corretos no atributo
+         * PrecoDeAluguel de acordo com o valor contido na variável posicao (getPosicao), usando a estrutura condicional switch-case.
+         * É importante destacar que, devido a especificidade, o PrecoDeAluguel varia sob duas situações:
+         * - aluguel com casa construída;
+         * - aluguel sem casa construída.
+         * Logo, o PrecoDeAluguel é setado de forma objetiva e específica, dependendo da situação citada acima.
+         */
+
         switch(getPosicao()) {
             case 2:
                 // aluguel com casa construida
@@ -290,6 +299,15 @@ public class Lote extends Propriedade
          * Implementação do método calcularAtributos(), que recebe um valor de tipo primitivo inteiro como parâmetro e
          * aloca os valores corretos nos atributos da classe de acordo com o valor contido da variável posicao, usando
          * a estrutura condicional Switch - Case.
+         * É crucial realçar que no método em questão, o atributo CasaConstruida recebe como parâmetro um boolean falso, pois estamos levando
+         * em consideração o preço de compra, o preço de compra de casa/hotel e o preço de aluguel, ou seja, valores que são fixos.
+         * Para cada posição, estamos setando os seguintes atributos:
+         * - Nome do Espaço;
+         * - Cor do Lote;
+         * - Preço de compra;
+         * - Preço de compra de casa/hotel;
+         * - Preço de Aluguel;
+         * - Posição do Lote.
          */
         
         setCasaConstruida(false);

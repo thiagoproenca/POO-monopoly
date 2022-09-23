@@ -1,4 +1,6 @@
 /*
+* Autor: Arthur Nitto
+* 
 * Descrição da classe: 
 * Classe que representa o espaço ”Na cadeia”, e possui o valor da fiança a ser paga por jogadores que estiverem presos
 * nesse espaço.
@@ -19,7 +21,9 @@ public class Cadeia extends Espaco {
         inicializaEspaco(posicao);
     }
     
-    // getters e setters
+    /**
+     * Métodos Getters e Setters de cada atributo da classe.
+     */
     private static int getValorFianca() {
         return(valorFianca);
     }

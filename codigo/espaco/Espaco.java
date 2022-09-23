@@ -1,9 +1,11 @@
-/* Autor: 
- * Thiago Proença
+/* 
+ * Autor: Thiago Proença
  * 
  * Descrição da classe: 
- * Classe que representa um espaco no "Tabuleiro"; classe generica que nao tem responsabilidade alguma.
- * As classes que possuem responsabilidades no "Tabuleiro" sao as sub-classes de "Espaco".
+ * Classe que representa um espaço no "Tabuleiro"; "Espaco" apresenta-se como umaclasse genérica
+ * que não tem responsabilidade específica, além de fornecer atributos e métodos getters e setter para as sub-classes
+ * a fim de preparar os diferentes tipos de espaços.
+ * Logo, as classes que possuem responsabilidades específicas no "Tabuleiro" são as sub-classes de "Espaco".
  */
 
 public class Espaco {
@@ -11,9 +13,9 @@ public class Espaco {
     protected int posicao;
     protected String nome;
 
-    // construtor
-
-    // getters e setters
+    /**
+     * Métodos Getters e Setters de cada atributo da classe.
+     */
     protected int getPosicao() {
         return(this.posicao);
     }
@@ -29,6 +31,4 @@ public class Espaco {
     protected void setNome(String nome) {
         this.nome = nome;
     }
-
-    //metodos
 }
