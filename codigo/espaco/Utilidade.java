@@ -44,16 +44,11 @@ public class Utilidade extends Propriedade
             switch(utilidades)
             {
                 case 1:
-                    precoDeAluguel = valor * 4;
+                    setPrecoDeAluguel(valor * 4);
                     jogador.setPosicao(posicao);
                     break;
                 case 2:
-                    precoDeAluguel = valor * 10;
-                    break;
-                default:
-                    //setPrecoDeAluguel(-1);
-                    //System.out.println("Erro! Só existem 2 Utilidades no Jogo");
-                    //jogador.setPosicao(posicao);
+                    setPrecoDeAluguel(valor * 10);
                     break;
             }
         }
@@ -81,7 +76,6 @@ public class Utilidade extends Propriedade
     {
         switch (posicao)
         {
-    
             case 13:
                 setPreco(150);
                 //System.out.println("O Aluguel foi = " +getPrecoDeAluguel());
@@ -94,11 +88,6 @@ public class Utilidade extends Propriedade
                 setPosicao(posicao);
                 setNome(NomeDoEspaco.COMP_AGUA.toString());
             break;
-            default:
-                //:D
-                //setPrecoDeAluguel(-1);
-                //setPosicao(0);
-                break;
         }
     }
 }
